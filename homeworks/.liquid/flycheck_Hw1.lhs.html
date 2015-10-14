@@ -1,0 +1,287 @@
+<h2 id="haskell-formalities">Haskell Formalities</h2>
+<p>We declare that this is the Hw1 module and import some libraries:</p>
+<pre><span class=hs-linenum>10: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>module</span> <span class='hs-conid'>Hw1</span> <span class='hs-keyword'>where</span>
+<span class=hs-linenum>11: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>import</span> <span class=hs-error><span class='hs-conid'>SOE</span></span>
+<span class=hs-linenum>12: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>import</span> <span class=hs-error><span class='hs-conid'>Play</span></span>
+<span class=hs-linenum>13: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>import</span> <span class=hs-error><span class='hs-conid'>XMLTypes</span></span>
+</pre>
+<h2 id="part-0-all-about-you">Part 0: All About You</h2>
+<p>Tell us your name, email and student ID, by replacing the respective strings below</p>
+<pre><span class=hs-linenum>21: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>myName</span>  <span class='hs-keyglyph'>=</span> <span class='hs-str'>"Write Your Name  Here"</span>
+<span class=hs-linenum>22: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>myEmail</span> <span class='hs-keyglyph'>=</span> <span class='hs-str'>"Write Your Email Here"</span>
+<span class=hs-linenum>23: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>mySID</span>   <span class='hs-keyglyph'>=</span> <span class='hs-str'>"Write Your SID   Here"</span>
+</pre>
+<h2 id="preliminaries">Preliminaries</h2>
+<p>Before starting this assignment:</p>
+<ul>
+<li>Download and install the <a href="http://www.haskell.org/platform/">Haskell Platform</a>.</li>
+<li><p>Download the <a href="/static/SOE-cse230-wi15.tar.gz">SOE code bundle</a>.</p></li>
+<li><p>Verify that it works by changing into the <code>SOE/src</code> directory and running <code>ghci Draw.lhs</code>, then typing <code>main0</code> at the prompt:</p></li>
+</ul>
+<pre><code>cd SOE/src
+ghci Draw.lhs
+*Draw&gt; main0</code></pre>
+<p>You should see a window with some shapes in it.</p>
+<p><strong>NOTE:</strong> If you have trouble installing SOE, <a href="soe-instructions.html">see this page</a></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Download the required files for this assignment: <a href="/static/hw1.tar.gz">hw1.tar.gz</a>. Unpack the files and make sure that you can successfully run the main program (in <code>Main.hs</code>). We've provided a <code>Makefile</code>, which you can use if you like. You should see this output:</li>
+</ol>
+<pre><code>Main: Define me!</code></pre>
+<h2 id="part-1-defining-and-manipulating-shapes">Part 1: Defining and Manipulating Shapes</h2>
+<p>You will write all of your code in the <code>hw1.lhs</code> file, in the spaces indicated. Do not alter the type annotations --- your code must typecheck with these types to be accepted.</p>
+<p>The following are the definitions of shapes:</p>
+<pre><span class=hs-linenum>64: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>data</span> <span class='hs-conid'>Shape</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Rectangle</span> <span class='hs-conid'>Side</span> <span class='hs-conid'>Side</span>
+<span class=hs-linenum>65: </span><span class='hs-varop'>&gt;</span>            <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Ellipse</span> <span class='hs-conid'>Radius</span> <span class='hs-conid'>Radius</span>
+<span class=hs-linenum>66: </span><span class='hs-varop'>&gt;</span>            <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RtTriangle</span> <span class='hs-conid'>Side</span> <span class='hs-conid'>Side</span>
+<span class=hs-linenum>67: </span><span class='hs-varop'>&gt;</span>            <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Polygon</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Vertex</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>68: </span><span class='hs-varop'>&gt;</span>            <span class='hs-keyword'>deriving</span> <span class='hs-conid'>Show</span>
+<span class=hs-linenum>69: </span><span class='hs-varop'>&gt;</span> 
+<span class=hs-linenum>70: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>type</span> <span class='hs-conid'>Radius</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Float</span> 
+<span class=hs-linenum>71: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>type</span> <span class='hs-conid'>Side</span>   <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Float</span>
+<span class=hs-linenum>72: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>type</span> <span class='hs-conid'>Vertex</span> <span class='hs-keyglyph'>=</span> <span class='hs-layout'>(</span><span class='hs-conid'>Float</span><span class='hs-layout'>,</span> <span class='hs-conid'>Float</span><span class='hs-layout'>)</span>
+</pre>
+<ol style="list-style-type: decimal">
+<li>Below, define functions <code>rectangle</code> and <code>rtTriangle</code> as suggested at the end of Section 2.1 (Exercise 2.1). Each should return a Shape built with the Polygon constructor.</li>
+</ol>
+<pre><span class=hs-linenum>78: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>rectangle</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Side</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Side</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Shape</span>
+<span class=hs-linenum>79: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>rectangle</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span> 
+</pre>
+<pre><span class=hs-linenum>81: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>rtTriangle</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Side</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Side</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Shape</span>
+<span class=hs-linenum>82: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>rtTriangle</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span> 
+</pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Define a function</li>
+</ol>
+<pre><span class=hs-linenum>86: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>sides</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Shape</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>87: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>sides</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>which returns the number of sides a given shape has. For the purposes of this exercise, an ellipse has 42 sides, and empty polygons, single points, and lines have zero sides.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Define a function</li>
+</ol>
+<pre><span class=hs-linenum>95: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>bigger</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Shape</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Float</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Shape</span>
+<span class=hs-linenum>96: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>bigger</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>that takes a shape <code>s</code> and expansion factor <code>e</code> and returns a shape which is the same as (i.e., similar to in the geometric sense) <code>s</code> but whose area is <code>e</code> times the area of <code>s</code>.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>The Towers of Hanoi is a puzzle where you are given three pegs, on one of which are stacked <span class="math"><em>n</em></span> discs in increasing order of size. To solve the puzzle, you must move all the discs from the starting peg to another by moving only one disc at a time and never stacking a larger disc on top of a smaller one.</li>
+</ol>
+<p>To move <span class="math"><em>n</em></span> discs from peg <span class="math"><em>a</em></span> to peg <span class="math"><em>b</em></span> using peg <span class="math"><em>c</em></span> as temporary storage:</p>
+<ol style="list-style-type: decimal">
+<li>Move <span class="math"><em>n</em> − 1</span> discs from peg <span class="math"><em>a</em></span> to peg <span class="math"><em>c</em></span>.</li>
+<li>Move the remaining disc from peg <span class="math"><em>a</em></span> to peg <span class="math"><em>b</em></span>.</li>
+<li>Move <span class="math"><em>n</em> − 1</span> discs from peg <span class="math"><em>c</em></span> to peg <span class="math"><em>b</em></span>.</li>
+</ol>
+<p>Write a function</p>
+<pre><span class=hs-linenum>116: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>hanoi</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>String</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>String</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>String</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>IO</span> <span class='hs-conid'>()</span>
+<span class=hs-linenum>117: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>hanoi</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>that, given the number of discs <span class="math"><em>n</em></span> and peg names <span class="math"><em>a</em></span>, <span class="math"><em>b</em></span>, and <span class="math"><em>c</em></span>, where a is the starting peg, emits the series of moves required to solve the puzzle. For example, running <code>hanoi 2 &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></p>
+<p>should emit the text</p>
+<pre><code>move disc from a to c
+move disc from a to b
+move disc from c to b</code></pre>
+<h2 id="part-2-drawing-fractals">Part 2: Drawing Fractals</h2>
+<ol style="list-style-type: decimal">
+<li>The Sierpinski Carpet is a recursive figure with a structure similar to the Sierpinski Triangle discussed in Chapter 3:</li>
+</ol>
+<div class="figure">
+<img src="/static/scarpet.png" alt="Sierpinski Carpet" /><p class="caption">Sierpinski Carpet</p>
+</div>
+<p>Write a function <code>sierpinskiCarpet</code> that displays this figure on the screen:</p>
+<pre><span class=hs-linenum>143: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>sierpinskiCarpet</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>IO</span> <span class='hs-conid'>()</span>
+<span class=hs-linenum>144: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>sierpinskiCarpet</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>Note that you either need to run your program in <code>SOE/src</code> or add this path to GHC's search path via <code>-i/path/to/SOE/src/</code>. Also, the organization of SOE has changed a bit, so that now you use <code>import SOE</code> instead of <code>import SOEGraphics</code>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Write a function <code>myFractal</code> which draws a fractal pattern of your own design. Be creative! The only constraint is that it shows some pattern of recursive self-similarity.</li>
+</ol>
+<pre><span class=hs-linenum>155: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>myFractal</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>IO</span> <span class='hs-conid'>()</span>
+<span class=hs-linenum>156: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>myFractal</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<h2 id="part-3-recursion-etc.">Part 3: Recursion Etc.</h2>
+<p>First, a warmup. Fill in the implementations for the following functions.</p>
+<p>(Your <code>maxList</code> and <code>minList</code> functions may assume that the lists they are passed contain at least one element.)</p>
+<p>Write a <em>non-recursive</em> function to compute the length of a list</p>
+<pre><span class=hs-linenum>168: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>lengthNonRecursive</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>169: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>lengthNonRecursive</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p><code>doubleEach [1,20,300,4000]</code> should return <code>[2,40,600,8000]</code></p>
+<pre><span class=hs-linenum>173: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>doubleEach</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>174: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>doubleEach</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>Now write a <em>non-recursive</em> version of the above.</p>
+<pre><span class=hs-linenum>178: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>doubleEachNonRecursive</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>179: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>doubleEachNonRecursive</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p><code>pairAndOne [1,20,300]</code> should return <code>[(1,2), (20,21), (300,301)]</code></p>
+<pre><span class=hs-linenum>183: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>pairAndOne</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-layout'>(</span><span class='hs-conid'>Int</span><span class='hs-layout'>,</span> <span class='hs-conid'>Int</span><span class='hs-layout'>)</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>184: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>pairAndOne</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>Now write a <em>non-recursive</em> version of the above.</p>
+<pre><span class=hs-linenum>189: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>pairAndOneNonRecursive</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-layout'>(</span><span class='hs-conid'>Int</span><span class='hs-layout'>,</span> <span class='hs-conid'>Int</span><span class='hs-layout'>)</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>190: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>pairAndOneNonRecursive</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p><code>addEachPair [(1,2), (20,21), (300,301)]</code> should return <code>[3,41,601]</code></p>
+<pre><span class=hs-linenum>194: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>addEachPair</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-layout'>(</span><span class='hs-conid'>Int</span><span class='hs-layout'>,</span> <span class='hs-conid'>Int</span><span class='hs-layout'>)</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>195: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>addEachPair</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span> 
+</pre>
+<p>Now write a <em>non-recursive</em> version of the above.</p>
+<pre><span class=hs-linenum>199: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>addEachPairNonRecursive</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-layout'>(</span><span class='hs-conid'>Int</span><span class='hs-layout'>,</span> <span class='hs-conid'>Int</span><span class='hs-layout'>)</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>200: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>addEachPairNonRecursive</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span> 
+</pre>
+<p><code>minList</code> should return the <em>smallest</em> value in the list. You may assume the input list is <em>non-empty</em>.</p>
+<pre><span class=hs-linenum>205: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>minList</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>206: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>minList</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>Now write a <em>non-recursive</em> version of the above.</p>
+<pre><span class=hs-linenum>210: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>minListNonRecursive</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>211: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>minListNonRecursive</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p><code>maxList</code> should return the <em>largest</em> value in the list. You may assume the input list is <em>non-empty</em>.</p>
+<pre><span class=hs-linenum>216: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>maxList</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>217: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>maxList</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>Now write a <em>non-recursive</em> version of the above.</p>
+<pre><span class=hs-linenum>221: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>maxListNonRecursive</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>222: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>maxListNonRecursive</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>Now, a few functions for this <code>Tree</code> type.</p>
+<pre><span class=hs-linenum>226: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>data</span> <span class='hs-conid'>Tree</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Leaf</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Branch</span> <span class='hs-layout'>(</span><span class='hs-conid'>Tree</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-conid'>Tree</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>227: </span><span class='hs-varop'>&gt;</span>               <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span> <span class='hs-conid'>Eq</span><span class='hs-layout'>)</span>
+</pre>
+<p><code>fringe t</code> should return a list of all the values occurring as a <code>Leaf</code>. So: <code>fringe (Branch (Leaf 1) (Leaf 2))</code> should return <code>[1,2]</code></p>
+<pre><span class=hs-linenum>232: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>fringe</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Tree</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>233: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>fringe</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p><code>treeSize</code> should return the number of leaves in the tree. So: <code>treeSize (Branch (Leaf 1) (Leaf 2))</code> should return <code>2</code>.</p>
+<pre><span class=hs-linenum>238: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>treeSize</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Tree</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>239: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>treeSize</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p><code>treeSize</code> should return the height of the tree. So: <code>height (Branch (Leaf 1) (Leaf 2))</code> should return <code>1</code>.</p>
+<pre><span class=hs-linenum>244: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>treeHeight</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Tree</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>245: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>treeHeight</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>Now, a tree where the values live at the nodes not the leaf.</p>
+<pre><span class=hs-linenum>249: </span><span class='hs-varop'>&gt;</span> <span class='hs-keyword'>data</span> <span class='hs-conid'>InternalTree</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>ILeaf</span> <span class='hs-keyglyph'>|</span> <span class='hs-conid'>IBranch</span> <span class='hs-varid'>a</span> <span class='hs-layout'>(</span><span class='hs-conid'>InternalTree</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-conid'>InternalTree</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>250: </span><span class='hs-varop'>&gt;</span>                       <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span> <span class='hs-conid'>Eq</span><span class='hs-layout'>)</span>
+</pre>
+<p><code>takeTree n t</code> should cut off the tree at depth <code>n</code>. So <code>takeTree 1 (IBranch 1 (IBranch 2 ILeaf ILeaf) (IBranch 3 ILeaf ILeaf)))</code> should return <code>IBranch 1 ILeaf ILeaf</code>.</p>
+<pre><span class=hs-linenum>256: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>takeTree</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>InternalTree</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>InternalTree</span> <span class='hs-varid'>a</span>
+<span class=hs-linenum>257: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>takeTree</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p><code>takeTreeWhile p t</code> should cut of the tree at the nodes that don't satisfy <code>p</code>. So: <code>takeTreeWhile (&lt; 3) (IBranch 1 (IBranch 2 ILeaf ILeaf) (IBranch 3 ILeaf ILeaf)))</code> should return <code>(IBranch 1 (IBranch 2 ILeaf ILeaf) ILeaf)</code>.</p>
+<pre><span class=hs-linenum>263: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>takeTreeWhile</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Bool</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>InternalTree</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>InternalTree</span> <span class='hs-varid'>a</span>
+<span class=hs-linenum>264: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>takeTreeWhile</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<p>Write the function map in terms of foldr:</p>
+<pre><span class=hs-linenum>268: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>myMap</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>b</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>269: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>myMap</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>error</span> <span class='hs-str'>"Define me!"</span>
+</pre>
+<h2 id="part-4-transforming-xml-documents">Part 4: Transforming XML Documents</h2>
+<p>The rest of this assignment involves transforming XML documents. To keep things simple, we will not deal with the full generality of XML, or with issues of parsing. Instead, we will represent XML documents as instances of the following simpliﬁed type:</p>
+<pre><code>data SimpleXML =
+   PCDATA String
+ | Element ElementName [SimpleXML]
+ deriving Show
+
+type ElementName = String</code></pre>
+<p>That is, a <code>SimpleXML</code> value is either a <code>PCDATA</code> (&quot;parsed character data&quot;) node containing a string or else an <code>Element</code> node containing a tag and a list of sub-nodes.</p>
+<p>The file <code>Play.hs</code> contains a sample XML value. To avoid getting into details of parsing actual XML concrete syntax, we'll work with just this one value for purposes of this assignment. The XML value in <code>Play.hs</code> has the following structure (in standard XML syntax):</p>
+<pre><code>&lt;PLAY&gt;
+  &lt;TITLE&gt;TITLE OF THE PLAY&lt;/TITLE&gt;
+  &lt;PERSONAE&gt;
+    &lt;PERSONA&gt; PERSON1 &lt;/PERSONA&gt;
+    &lt;PERSONA&gt; PERSON2 &lt;/PERSONA&gt;
+    ... -- MORE PERSONAE
+    &lt;/PERSONAE&gt;
+  &lt;ACT&gt;
+    &lt;TITLE&gt;TITLE OF FIRST ACT&lt;/TITLE&gt;
+    &lt;SCENE&gt;
+      &lt;TITLE&gt;TITLE OF FIRST SCENE&lt;/TITLE&gt;
+      &lt;SPEECH&gt;
+        &lt;SPEAKER&gt; PERSON1 &lt;/SPEAKER&gt;
+        &lt;LINE&gt;LINE1&lt;/LINE&gt;
+        &lt;LINE&gt;LINE2&lt;/LINE&gt;
+        ... -- MORE LINES
+      &lt;/SPEECH&gt;
+      ... -- MORE SPEECHES
+    &lt;/SCENE&gt;
+    ... -- MORE SCENES
+  &lt;/ACT&gt;
+  ... -- MORE ACTS
+&lt;/PLAY&gt;</code></pre>
+<ul>
+<li><code>sample.html</code> contains a (very basic) HTML rendition of the same information as <code>Play.hs</code>. You may want to have a look at it in your favorite browser. The HTML in <code>sample.html</code> has the following structure (with whitespace added for readability):</li>
+</ul>
+<pre><code>&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;TITLE OF THE PLAY&lt;/h1&gt;
+    &lt;h2&gt;Dramatis Personae&lt;/h2&gt;
+    PERSON1&lt;br/&gt;
+    PERSON2&lt;br/&gt;
+    ...
+    &lt;h2&gt;TITLE OF THE FIRST ACT&lt;/h2&gt;
+    &lt;h3&gt;TITLE OF THE FIRST SCENE&lt;/h3&gt;
+    &lt;b&gt;PERSON1&lt;/b&gt;&lt;br/&gt;
+    LINE1&lt;br/&gt;
+    LINE2&lt;br/&gt;
+    ...
+    &lt;b&gt;PERSON2&lt;/b&gt;&lt;br/&gt;
+    LINE1&lt;br/&gt;
+    LINE2&lt;br/&gt;
+    ...
+    &lt;h3&gt;TITLE OF THE SECOND SCENE&lt;/h3&gt;
+    &lt;b&gt;PERSON3&lt;/b&gt;&lt;br/&gt;
+    LINE1&lt;br/&gt;
+    LINE2&lt;br/&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>You will write a function <code>formatPlay</code> that converts an XML structure representing a play to another XML structure that, when printed, yields the HTML speciﬁed above (but with no whitespace except what's in the textual data in the original XML).</p>
+<pre><span class=hs-linenum>360: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>formatPlay</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>SimpleXML</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>SimpleXML</span>
+<span class=hs-linenum>361: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>formatPlay</span> <span class='hs-varid'>xml</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>PCDATA</span> <span class='hs-str'>"WRITE ME!"</span>
+</pre>
+<p>The main action that we've provided below will use your function to generate a ﬁle <code>dream.html</code> from the sample play. The contents of this ﬁle after your program runs must be character-for-character identical to <code>sample.html</code>.</p>
+<pre><span class=hs-linenum>368: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>mainXML</span> <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>do</span> <span class='hs-varid'>writeFile</span> <span class='hs-str'>"dream.html"</span> <span class='hs-varop'>$</span> <span class='hs-varid'>xml2string</span> <span class='hs-varop'>$</span> <span class='hs-varid'>formatPlay</span> <span class='hs-varid'>play</span>
+<span class=hs-linenum>369: </span><span class='hs-varop'>&gt;</span>              <span class='hs-varid'>testResults</span> <span class='hs-str'>"dream.html"</span> <span class='hs-str'>"sample.html"</span>
+<span class=hs-linenum>370: </span><span class='hs-varop'>&gt;</span>
+<span class=hs-linenum>371: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>firstDiff</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Eq</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>=&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Maybe</span> <span class='hs-layout'>(</span><span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span><span class='hs-layout'>,</span><span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>372: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>firstDiff</span> <span class='hs-conid'>[]</span> <span class='hs-conid'>[]</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Nothing</span>
+<span class=hs-linenum>373: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>firstDiff</span> <span class='hs-layout'>(</span><span class='hs-varid'>c</span><span class='hs-conop'>:</span><span class='hs-varid'>cs</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-varid'>d</span><span class='hs-conop'>:</span><span class='hs-varid'>ds</span><span class='hs-layout'>)</span> 
+<span class=hs-linenum>374: </span><span class='hs-varop'>&gt;</span>      <span class='hs-keyglyph'>|</span> <span class='hs-varid'>c</span><span class='hs-varop'>==</span><span class='hs-varid'>d</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>firstDiff</span> <span class='hs-varid'>cs</span> <span class='hs-varid'>ds</span> 
+<span class=hs-linenum>375: </span><span class='hs-varop'>&gt;</span>      <span class='hs-keyglyph'>|</span> <span class='hs-varid'>otherwise</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Just</span> <span class='hs-layout'>(</span><span class='hs-varid'>c</span><span class='hs-conop'>:</span><span class='hs-varid'>cs</span><span class='hs-layout'>,</span> <span class='hs-varid'>d</span><span class='hs-conop'>:</span><span class='hs-varid'>ds</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>376: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>firstDiff</span> <span class='hs-varid'>cs</span> <span class='hs-varid'>ds</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Just</span> <span class='hs-layout'>(</span><span class='hs-varid'>cs</span><span class='hs-layout'>,</span><span class='hs-varid'>ds</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>377: </span><span class='hs-varop'>&gt;</span> 
+<span class=hs-linenum>378: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>testResults</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>String</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>String</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>IO</span> <span class='hs-conid'>()</span>
+<span class=hs-linenum>379: </span><span class='hs-varop'>&gt;</span> <span class='hs-definition'>testResults</span> <span class='hs-varid'>file1</span> <span class='hs-varid'>file2</span> <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>do</span> 
+<span class=hs-linenum>380: </span><span class='hs-varop'>&gt;</span>   <span class='hs-varid'>f1</span> <span class='hs-keyglyph'>&lt;-</span> <span class='hs-varid'>readFile</span> <span class='hs-varid'>file1</span>
+<span class=hs-linenum>381: </span><span class='hs-varop'>&gt;</span>   <span class='hs-varid'>f2</span> <span class='hs-keyglyph'>&lt;-</span> <span class='hs-varid'>readFile</span> <span class='hs-varid'>file2</span>
+<span class=hs-linenum>382: </span><span class='hs-varop'>&gt;</span>   <span class='hs-keyword'>case</span> <span class='hs-varid'>firstDiff</span> <span class='hs-varid'>f1</span> <span class='hs-varid'>f2</span> <span class='hs-keyword'>of</span>
+<span class=hs-linenum>383: </span><span class='hs-varop'>&gt;</span>     <span class='hs-conid'>Nothing</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span>
+<span class=hs-linenum>384: </span><span class='hs-varop'>&gt;</span>       <span class='hs-varid'>putStr</span> <span class='hs-str'>"Success!\n"</span>
+<span class=hs-linenum>385: </span><span class='hs-varop'>&gt;</span>     <span class='hs-conid'>Just</span> <span class='hs-layout'>(</span><span class='hs-varid'>cs</span><span class='hs-layout'>,</span><span class='hs-varid'>ds</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span>
+<span class=hs-linenum>386: </span><span class='hs-varop'>&gt;</span>       <span class='hs-varid'>putStr</span> <span class='hs-str'>"Results differ: '"</span>
+<span class=hs-linenum>387: </span><span class='hs-varop'>&gt;</span>       <span class='hs-varid'>putStr</span> <span class='hs-layout'>(</span><span class='hs-varid'>take</span> <span class='hs-num'>20</span> <span class='hs-varid'>cs</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>388: </span><span class='hs-varop'>&gt;</span>       <span class='hs-varid'>putStr</span> <span class='hs-str'>"' vs '"</span>
+<span class=hs-linenum>389: </span><span class='hs-varop'>&gt;</span>       <span class='hs-varid'>putStr</span> <span class='hs-layout'>(</span><span class='hs-varid'>take</span> <span class='hs-num'>20</span> <span class='hs-varid'>ds</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>390: </span><span class='hs-varop'>&gt;</span>       <span class='hs-varid'>putStr</span> <span class='hs-str'>"'\n"</span>
+</pre>
+<p>Important: The purpose of this assignment is not just to &quot;get the job done&quot; --- i.e., to produce the right HTML. A more important goal is to think about what is a good way to do this job, and jobs like it. To this end, your solution should be organized into two parts:</p>
+<ol style="list-style-type: decimal">
+<li><p>a collection of generic functions for transforming XML structures that have nothing to do with plays, plus</p></li>
+<li><p>a short piece of code (a single deﬁnition or a collection of short deﬁnitions) that uses the generic functions to do the particular job of transforming a play into HTML.</p></li>
+</ol>
+<p>Obviously, there are many ways to do the ﬁrst part. The main challenge of the assignment is to ﬁnd a clean design that matches the needs of the second part.</p>
+<p>You will be graded not only on correctness (producing the required output), but also on the elegance of your solution and the clarity and readability of your code and documentation. Style counts. It is strongly recommended that you rewrite this part of the assignment a couple of times: get something working, then step back and see if there is anything you can abstract out or generalize, rewrite it, then leave it alone for a few hours or overnight and rewrite it again. Try to use some of the higher-order programming techniques we've been discussing in class.</p>
+<h2 id="submission-instructions">Submission Instructions</h2>
+<ul>
+<li>If working with a partner, you should both submit your assignments individually.</li>
+<li>Make sure your <code>hw1.lhs</code> is accepted by GHC without errors or warnings.</li>
+<li>Attach your <code>hw1.hs</code> file in an email to <code>cse230@goto.ucsd.edu</code> with the subject &quot;HW1&quot; (minus the quotes). <em>This address is unmonitored!</em></li>
+</ul>
+<h2 id="credits">Credits</h2>
+<p>This homework is essentially Homeworks 1 &amp; 2 from <a href="http://www.cis.upenn.edu/~bcpierce/courses/552-2008/index.html">UPenn's CIS 552</a>.</p>
+<head>
+<link type='text/css' rel='stylesheet' href='liquid.css' />
+</head>

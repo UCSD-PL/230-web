@@ -1,0 +1,21 @@
+name:                ucsd-cse-two-thirty
+version:             0.1.0.0
+synopsis:            Home page for CSE 230 at UC San Diego 
+homepage:            https://github.com/ucsd-pl/cse230
+license:             MIT
+license-file:        LICENSE
+author:              Ranjit Jhala
+maintainer:          jhala@cs.ucsd.edu
+copyright:           Ranjit Jhala
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+executable website 
+  main-is:             Site.hs
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  ghc-options:         -threaded
+  build-depends:       base,
+                       hakyll

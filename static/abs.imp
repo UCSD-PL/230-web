@@ -1,0 +1,6 @@
+X := 0 - 3;
+if X < 0 then
+  X := 0 - X
+else
+  skip
+endif

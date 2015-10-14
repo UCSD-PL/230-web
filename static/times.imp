@@ -1,0 +1,7 @@
+X := 10;
+Y := 3;
+Z := 0;
+while X > 0 do
+  Z := Z + Y;
+  X := X - 1
+endwhile

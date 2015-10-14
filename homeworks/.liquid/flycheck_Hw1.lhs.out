@@ -1,0 +1,10 @@
+CRASH: Invalid Source
+ /Users/rjhala/teaching/230-wi15/web/homeworks/flycheck_Hw1.lhs:11:10-12: Error: GHC Error
+     Could not find module ‘SOE’
+Use -v to see a list of the files searched for.
+ /Users/rjhala/teaching/230-wi15/web/homeworks/flycheck_Hw1.lhs:12:10-13: Error: GHC Error
+     Could not find module ‘Play’
+Use -v to see a list of the files searched for.
+ /Users/rjhala/teaching/230-wi15/web/homeworks/flycheck_Hw1.lhs:13:10-17: Error: GHC Error
+     Could not find module ‘XMLTypes’
+Use -v to see a list of the files searched for.

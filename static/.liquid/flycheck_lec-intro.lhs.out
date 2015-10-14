@@ -1,0 +1,17 @@
+UNSAFE
+ /Users/rjhala/teaching/230-wi15/web/static/flycheck_lec-intro.lhs:10:52-54: Error: Liquid Type Mismatch
+   Inferred type
+     VV : Int | VV == ?a && VV == n - ?b
+  
+   not a subtype of Required type
+     VV : Int | VV >= 0 && VV < n
+  
+   In Context
+     VV : Int | VV == ?a && VV == n - ?b
+     n  : Int
+     ?a : Int | ?a == n - ?b
+     ?b : Int | ?b == (1  :  int)
+ /Users/rjhala/teaching/230-wi15/web/static/flycheck_lec-intro.lhs:32:3-9: Error: Termination Error on Main.rangeIf
+ No decreasing parameter
+ /Users/rjhala/teaching/230-wi15/web/static/flycheck_lec-intro.lhs:36:3-7: Error: Termination Error on Main.range
+ No decreasing parameter

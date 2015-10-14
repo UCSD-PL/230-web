@@ -1,0 +1,1 @@
+{"status":"error","types":{},"errors":[{"start":{"line":179,"column":13},"stop":{"line":179,"column":15},"message":"/Users/rjhala/teaching/230-wi15/web/homeworks/Hw2.lhs:179:13-14: Error: GHC Error\n    Not in scope: type constructor or class ‘Op’\nA data constructor of that name is in scope; did you mean DataKinds?"}]}

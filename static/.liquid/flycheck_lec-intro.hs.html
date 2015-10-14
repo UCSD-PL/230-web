@@ -1,0 +1,474 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title>/Users/rjhala/teaching/230-wi15/web/static/flycheck_lec-intro.hs</title>
+</head>
+<head>
+<link type='text/css' rel='stylesheet' href='liquid.css' />
+</head>
+
+<body>
+<hr>
+Put mouse over identifiers to see inferred types
+<pre><span class=hs-linenum>  1: </span><span class='hs-cpp'>#!/</span><span class='hs-varid'>usr</span><span class='hs-varop'>/</span><span class='hs-varid'>bin</span><span class='hs-varop'>/</span><span class='hs-varid'>env</span> <span class='hs-varid'>runhaskell</span>
+<span class=hs-linenum>  2: </span>
+<span class=hs-linenum>  3: </span><span class='hs-keyword'>{-@</span> <span class='hs-conid'>LIQUID</span> <span class='hs-str'>"--short-names"</span>    <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>  4: </span><span class='hs-keyword'>{-@</span> <span class='hs-conid'>LIQUID</span> <span class='hs-str'>"--no-termination"</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>  5: </span><span class='hs-keyword'>{-@</span> <span class='hs-conid'>LIQUID</span> <span class='hs-str'>"--diff"</span>           <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>  6: </span>
+<span class=hs-linenum>  7: </span><span class='hs-keyword'>import</span> <span class='hs-conid'>Prelude</span> <span class='hs-varid'>hiding</span> <span class='hs-layout'>(</span><span class='hs-varid'>sum</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>  8: </span>
+<span class=hs-linenum>  9: </span><span class='hs-definition'>e1</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Double</span>  
+<span class=hs-linenum> 10: </span><a class=annot href="#"><span class=annottext>Double</span><span class='hs-definition'>e1</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Double | v == 31.0}</span><span class='hs-num'>31</span></a> <a class=annot href="#"><span class=annottext>x1:Double
+-&gt; x2:Double
+-&gt; {v : Double | x1 &gt; 0 &amp;&amp; x2 &gt; 0 =&gt; v &gt;= x1 &amp;&amp; v &gt;= x2 &amp;&amp; x1 &gt; 1 &amp;&amp; x2 &gt; 1 =&gt; v &gt; x1 &amp;&amp; v &gt; x2 &amp;&amp; x1 == 0 || x2 == 0 =&gt; v == 0}</span><span class='hs-varop'>*</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{v : Double | v == 42.0}</span><span class='hs-num'>42</span></a> <a class=annot href="#"><span class=annottext>x1:Double -&gt; x2:Double -&gt; {v : Double | v == x1 + x2}</span><span class='hs-varop'>+</span></a> <a class=annot href="#"><span class=annottext>{v : Double | v == 56.0}</span><span class='hs-num'>56</span></a><span class='hs-layout'>)</span>
+<span class=hs-linenum> 11: </span>       
+<span class=hs-linenum> 12: </span><a class=annot href="#"><span class=annottext>Double</span><span class='hs-definition'>e2</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Double | v == 3.0}</span><span class='hs-num'>3</span></a> <a class=annot href="#"><span class=annottext>x1:Double
+-&gt; x2:Double
+-&gt; {v : Double | x1 &gt; 0 &amp;&amp; x2 &gt; 0 =&gt; v &gt;= x1 &amp;&amp; v &gt;= x2 &amp;&amp; x1 &gt; 1 &amp;&amp; x2 &gt; 1 =&gt; v &gt; x1 &amp;&amp; v &gt; x2 &amp;&amp; x1 == 0 || x2 == 0 =&gt; v == 0}</span><span class='hs-varop'>*</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{v : Double | v == 4.2}</span><span class='hs-num'>4.2</span></a> <a class=annot href="#"><span class=annottext>x1:Double -&gt; x2:Double -&gt; {v : Double | v == x1 + x2}</span><span class='hs-varop'>+</span></a> <a class=annot href="#"><span class=annottext>{v : Double | v == 5.6}</span><span class='hs-num'>5.6</span></a><span class='hs-layout'>)</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Double</span>
+<span class=hs-linenum> 13: </span>
+<span class=hs-linenum> 14: </span><span class='hs-definition'>e3</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Bool</span>
+<span class=hs-linenum> 15: </span><a class=annot href="#"><span class=annottext>Bool</span><span class='hs-definition'>e3</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Bool | Prop v &amp;&amp; v == GHC.Types.True}</span><span class='hs-conid'>True</span></a>
+<span class=hs-linenum> 16: </span>
+<span class=hs-linenum> 17: </span><span class='hs-definition'>e4</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-layout'>(</span><span class='hs-conid'>Int</span><span class='hs-layout'>,</span> <span class='hs-conid'>Double</span><span class='hs-layout'>)</span><span class='hs-layout'>,</span> <span class='hs-conid'>Bool</span><span class='hs-layout'>)</span>
+<span class=hs-linenum> 18: </span><a class=annot href="#"><span class=annottext>((Integer, Double), Bool)</span><span class='hs-definition'>e4</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>forall a b &lt;p2 :: a b -&gt; Prop&gt;.
+x1:a
+-&gt; x2:{VV : b&lt;p2 x1&gt; | true}
+-&gt; {v : (a, b)&lt;\x6 VV -&gt; p2 x6&gt; | fst v == x1 &amp;&amp; x_Tuple22 v == x2 &amp;&amp; snd v == x2 &amp;&amp; x_Tuple21 v == x1}</span><span class='hs-layout'>(</span></a><a class=annot href="#"><span class=annottext>(Integer, Double)</span><span class='hs-layout'>(</span></a><span class='hs-num'>7</span><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>{v : Double | v == 5.2}</span><span class='hs-num'>5.2</span></a><span class='hs-layout'>)</span><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>{v : Bool | Prop v &amp;&amp; v == GHC.Types.True}</span><span class='hs-conid'>True</span></a><span class='hs-layout'>)</span>
+<span class=hs-linenum> 19: </span>
+<span class=hs-linenum> 20: </span>
+<span class=hs-linenum> 21: </span>
+<span class=hs-linenum> 22: </span><span class='hs-definition'>zero</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum> 23: </span><a class=annot href="#"><span class=annottext>Integer</span><span class='hs-definition'>zero</span></a> <span class='hs-keyglyph'>=</span> <span class='hs-num'>0</span>
+<span class=hs-linenum> 24: </span>
+<span class=hs-linenum> 25: </span><a class=annot href="#"><span class=annottext>Integer</span><span class='hs-definition'>x</span></a> <span class='hs-keyglyph'>=</span> <span class='hs-num'>12</span>
+<span class=hs-linenum> 26: </span>
+<span class=hs-linenum> 27: </span><span class='hs-definition'>pos</span>   <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Integer</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Bool</span> 
+<span class=hs-linenum> 28: </span><a class=annot href="#"><span class=annottext>Integer -&gt; Bool</span><span class='hs-definition'>pos</span></a> <a class=annot href="#"><span class=annottext>Integer</span><span class='hs-varid'>x</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Integer | v == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>x1:Integer -&gt; x2:Integer -&gt; {v : Bool | Prop v &lt;=&gt; x1 &gt; v}</span><span class='hs-varop'>&gt;</span></a> <span class='hs-num'>0</span>
+<span class=hs-linenum> 29: </span>
+<span class=hs-linenum> 30: </span><span class='hs-comment'>-- pos 12 == 12 &gt; 0 == True</span>
+<span class=hs-linenum> 31: </span>
+<span class=hs-linenum> 32: </span><span class='hs-definition'>pat3</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum> 33: </span><a class=annot href="#"><span class=annottext>Int -&gt; Int -&gt; Int -&gt; Int</span><span class='hs-definition'>pat3</span></a> <a class=annot href="#"><span class=annottext>Int</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>Int</span><span class='hs-varid'>y</span></a> <a class=annot href="#"><span class=annottext>Int</span><span class='hs-varid'>z</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Int | v == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>x1:Int
+-&gt; x2:Int
+-&gt; {v : Int | x1 &gt; 0 &amp;&amp; x2 &gt; 0 =&gt; v &gt;= x1 &amp;&amp; v &gt;= x2 &amp;&amp; x1 &gt; 1 &amp;&amp; x2 &gt; 1 =&gt; v &gt; x1 &amp;&amp; v &gt; x2 &amp;&amp; x1 == 0 || x2 == 0 =&gt; v == 0}</span><span class='hs-varop'>*</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{v : Int | v == y}</span><span class='hs-varid'>y</span></a> <a class=annot href="#"><span class=annottext>x1:Int -&gt; x2:Int -&gt; {v : Int | v == x1 + x2}</span><span class='hs-varop'>+</span></a> <a class=annot href="#"><span class=annottext>{v : Int | v == z}</span><span class='hs-varid'>z</span></a> <span class='hs-layout'>)</span>
+<span class=hs-linenum> 34: </span>
+<span class=hs-linenum> 35: </span><a class=annot href="#"><span class=annottext>Int -&gt; Int</span><span class='hs-definition'>zog</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>Int -&gt; Int -&gt; Int -&gt; Int</span><span class='hs-varid'>pat3</span></a> <a class=annot href="#"><span class=annottext>{v : Int | v == (2  :  int)}</span><span class='hs-num'>2</span></a> <a class=annot href="#"><span class=annottext>{v : Int | v == (10  :  int)}</span><span class='hs-num'>10</span></a>
+<span class=hs-linenum> 36: </span>
+<span class=hs-linenum> 37: </span>
+<span class=hs-linenum> 38: </span><span class='hs-definition'>pat</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-conid'>Int</span><span class='hs-layout'>,</span> <span class='hs-conid'>Int</span><span class='hs-layout'>,</span> <span class='hs-conid'>Int</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum> 39: </span><a class=annot href="#"><span class=annottext>(Int, Int, Int) -&gt; Int</span><span class='hs-definition'>pat</span></a> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-layout'>,</span> <span class='hs-varid'>y</span><span class='hs-layout'>,</span> <span class='hs-varid'>z</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Int | v == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>x1:Int
+-&gt; x2:Int
+-&gt; {v : Int | x1 &gt; 0 &amp;&amp; x2 &gt; 0 =&gt; v &gt;= x1 &amp;&amp; v &gt;= x2 &amp;&amp; x1 &gt; 1 &amp;&amp; x2 &gt; 1 =&gt; v &gt; x1 &amp;&amp; v &gt; x2 &amp;&amp; x1 == 0 || x2 == 0 =&gt; v == 0}</span><span class='hs-varop'>*</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{v : Int | v == y}</span><span class='hs-varid'>y</span></a> <a class=annot href="#"><span class=annottext>x1:Int -&gt; x2:Int -&gt; {v : Int | v == x1 + x2}</span><span class='hs-varop'>+</span></a> <a class=annot href="#"><span class=annottext>{v : Int | v == z}</span><span class='hs-varid'>z</span></a><span class='hs-layout'>)</span>
+<span class=hs-linenum> 40: </span>
+<span class=hs-linenum> 41: </span><span class='hs-comment'>{- 
+   mys ("cat", "dog", 49)   ======&gt; 49
+   mys (1, 2, 3)            ======&gt; 3
+   mys (True, False, "bob") ======&gt; "bob"
+-}</span>
+<span class=hs-linenum> 46: </span>
+<span class=hs-linenum> 47: </span><span class='hs-comment'>-- PATTERN MATCHING</span>
+<span class=hs-linenum> 48: </span>
+<span class=hs-linenum> 49: </span><span class='hs-definition'>mys</span>           <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span><span class='hs-layout'>,</span> <span class='hs-varid'>b</span><span class='hs-layout'>,</span> <span class='hs-varid'>c</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>c</span> 
+<span class=hs-linenum> 50: </span><a class=annot href="#"><span class=annottext>forall a b c. (a, b, c) -&gt; c</span><span class='hs-definition'>mys</span></a> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-layout'>,</span> <span class='hs-varid'>y</span><span class='hs-layout'>,</span> <span class='hs-varid'>z</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == z}</span><span class='hs-varid'>z</span></a>
+<span class=hs-linenum> 51: </span>
+<span class=hs-linenum> 52: </span>
+<span class=hs-linenum> 53: </span>
+<span class=hs-linenum> 54: </span>
+<span class=hs-linenum> 55: </span>
+<span class=hs-linenum> 56: </span><a class=annot href="#"><span class=annottext>[Char]</span><span class='hs-definition'>e5</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : [Char] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-keyglyph'>[</span></a><a class=annot href="#"><span class=annottext>Char</span><span class='hs-chr'>'1'</span></a><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>Char</span><span class='hs-chr'>'2'</span></a><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>Char</span><span class='hs-chr'>'c'</span></a><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum> 57: </span>
+<span class=hs-linenum> 58: </span><span class='hs-definition'>e6</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-keyglyph'>[</span><span class='hs-conid'>Double</span><span class='hs-keyglyph'>]</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum> 59: </span><a class=annot href="#"><span class=annottext>[[Double]]</span><span class='hs-definition'>e6</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : [[Double]] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-keyglyph'>[</span></a><a class=annot href="#"><span class=annottext>{v : [Double] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-keyglyph'>[</span></a><a class=annot href="#"><span class=annottext>{v : Double | v == 1.0}</span><span class='hs-num'>1</span></a><span class='hs-keyglyph'>]</span><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>{v : [Double] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-keyglyph'>[</span></a><a class=annot href="#"><span class=annottext>{v : Double | v == 2.0}</span><span class='hs-num'>2</span></a><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>{v : Double | v == 3.0}</span><span class='hs-num'>3</span></a><span class='hs-keyglyph'>]</span><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>{v : [Double] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-keyglyph'>[</span></a><a class=annot href="#"><span class=annottext>{v : Double | v == 4.2}</span><span class='hs-num'>4.2</span></a><span class='hs-keyglyph'>]</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum> 60: </span>
+<span class=hs-linenum> 61: </span><a class=annot href="#"><span class=annottext>forall a. [a]</span><span class='hs-definition'>emp</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>forall a &lt;p :: a a -&gt; Prop&gt;.
+{v : [a]&lt;\x4 VV -&gt; p x4&gt; | null v &lt;=&gt; true &amp;&amp; len v == 0}</span><span class='hs-conid'>[]</span></a>
+<span class=hs-linenum> 62: </span>
+<span class=hs-linenum> 63: </span><span class='hs-definition'>e7</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Int</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum> 64: </span><a class=annot href="#"><span class=annottext>[Integer]</span><span class='hs-definition'>e7</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Integer | v == 1}</span><span class='hs-num'>1</span></a> <a class=annot href="#"><span class=annottext>x1:Integer
+-&gt; x2:[Integer]
+-&gt; {v : [Integer] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>{v : [Integer] | len v &gt;= 0}</span><span class='hs-varid'>emp</span></a>
+<span class=hs-linenum> 65: </span>
+<span class=hs-linenum> 66: </span><span class='hs-definition'>e8</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>String</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum> 67: </span><a class=annot href="#"><span class=annottext>[[Char]]</span><span class='hs-definition'>e8</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : [Char] | len v &gt;= 0}</span><span class='hs-str'>"cat"</span></a> <a class=annot href="#"><span class=annottext>x1:[Char]
+-&gt; x2:[[Char]]
+-&gt; {v : [[Char]] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>{v : [[Char]] | len v &gt;= 0}</span><span class='hs-varid'>emp</span></a>
+<span class=hs-linenum> 68: </span>
+<span class=hs-linenum> 69: </span><span class='hs-definition'>e9</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Double</span><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum> 70: </span><a class=annot href="#"><span class=annottext>[Double]</span><span class='hs-definition'>e9</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Double | v == 4.9}</span><span class='hs-num'>4.9</span></a> <a class=annot href="#"><span class=annottext>x1:Double
+-&gt; x2:[Double]
+-&gt; {v : [Double] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>{v : [Double] | len v &gt;= 0}</span><span class='hs-varid'>emp</span></a> 
+<span class=hs-linenum> 71: </span>
+<span class=hs-linenum> 72: </span>
+<span class=hs-linenum> 73: </span><span class='hs-definition'>cons2</span>          <span class='hs-keyglyph'>::</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span> 
+<span class=hs-linenum> 74: </span><a class=annot href="#"><span class=annottext>forall a. a -&gt; a -&gt; [a] -&gt; [a]</span><span class='hs-definition'>cons2</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x1</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x2</span></a> <a class=annot href="#"><span class=annottext>[a]</span><span class='hs-varid'>xs</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == x1}</span><span class='hs-varid'>x1</span></a> <a class=annot href="#"><span class=annottext>x1:a
+-&gt; x2:[a]
+-&gt; {v : [a] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>{VV : a | VV == x2}</span><span class='hs-varid'>x2</span></a> <a class=annot href="#"><span class=annottext>x1:a
+-&gt; x2:[a]
+-&gt; {v : [a] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>{v : [a] | v == xs &amp;&amp; len v &gt;= 0}</span><span class='hs-varid'>xs</span></a> 
+<span class=hs-linenum> 75: </span>
+<span class=hs-linenum> 76: </span>
+<span class=hs-linenum> 77: </span>
+<span class=hs-linenum> 78: </span><span class='hs-comment'>-- firstElem [1,2,3]                ===&gt; 1</span>
+<span class=hs-linenum> 79: </span><span class='hs-comment'>-- firstElem ["cat", "dog", "muse"]          ===&gt; "cat"</span>
+<span class=hs-linenum> 80: </span><span class='hs-comment'>-- firstElem ["cat", "dog", "goose", "muse"] ===&gt; "cat"</span>
+<span class=hs-linenum> 81: </span>
+<span class=hs-linenum> 82: </span><a class=annot href="#"><span class=annottext>forall a. [a] -&gt; a</span><span class='hs-definition'>firstElem</span></a> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-conop'>:</span><span class='hs-keyword'>_</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> 
+<span class=hs-linenum> 83: </span>
+<span class=hs-linenum> 84: </span>
+<span class=hs-linenum> 85: </span>
+<span class=hs-linenum> 86: </span>
+<span class=hs-linenum> 87: </span>
+<span class=hs-linenum> 88: </span>
+<span class=hs-linenum> 89: </span>
+<span class=hs-linenum> 90: </span>
+<span class=hs-linenum> 91: </span>
+<span class=hs-linenum> 92: </span><span class='hs-comment'>-- | A recursive function</span>
+<span class=hs-linenum> 93: </span>
+<span class=hs-linenum> 94: </span><span class='hs-comment'>-- HEREHERE</span>
+<span class=hs-linenum> 95: </span>
+<span class=hs-linenum> 96: </span><span class='hs-comment'>-- &gt;&gt;&gt; clone 0 'a'</span>
+<span class=hs-linenum> 97: </span><span class='hs-comment'>-- []</span>
+<span class=hs-linenum> 98: </span>
+<span class=hs-linenum> 99: </span><span class='hs-comment'>-- &gt;&gt;&gt; clone 1 'a'</span>
+<span class=hs-linenum>100: </span><span class='hs-comment'>-- ['a']</span>
+<span class=hs-linenum>101: </span>
+<span class=hs-linenum>102: </span><span class='hs-comment'>-- &gt;&gt;&gt; clone 2 'a'</span>
+<span class=hs-linenum>103: </span><span class='hs-comment'>-- ['a','a']</span>
+<span class=hs-linenum>104: </span>
+<span class=hs-linenum>105: </span><span class='hs-comment'>-- &gt;&gt;&gt; clone 3 'a'</span>
+<span class=hs-linenum>106: </span><span class='hs-comment'>-- ['a','a','a']</span>
+<span class=hs-linenum>107: </span>
+<span class=hs-linenum>108: </span><span class='hs-definition'>clone</span>         <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>thing</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>thing</span><span class='hs-keyglyph'>]</span> 
+<span class=hs-linenum>109: </span><a class=annot href="#"><span class=annottext>forall a. Int -&gt; a -&gt; [a]</span><span class='hs-definition'>clone</span></a> <a class=annot href="#"><span class=annottext>Int</span><span class='hs-varid'>n</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a>     <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>Bool -&gt; [a] -&gt; [a] -&gt; [a]</span><span class='hs-varid'>ite</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{v : Int | v == n}</span><span class='hs-varid'>n</span></a> <a class=annot href="#"><span class=annottext>x1:Int -&gt; x2:Int -&gt; {v : Bool | Prop v &lt;=&gt; x1 &gt; v}</span><span class='hs-varop'>&gt;</span></a> <a class=annot href="#"><span class=annottext>{v : Int | v == (0  :  int)}</span><span class='hs-num'>0</span></a><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>x1:a
+-&gt; x2:[a]
+-&gt; {v : [a] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>forall a. Int -&gt; a -&gt; [a]</span><span class='hs-varid'>clone</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{v : Int | v == n}</span><span class='hs-varid'>n</span></a><a class=annot href="#"><span class=annottext>x1:Int -&gt; x2:Int -&gt; {v : Int | v == x1 - x2}</span><span class='hs-comment'>-</span></a><a class=annot href="#"><span class=annottext>{v : Int | v == (1  :  int)}</span><span class='hs-num'>1</span></a><span class='hs-layout'>)</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a><span class='hs-layout'>)</span> <a class=annot href="#"><span class=annottext>{v : [a] | null v &lt;=&gt; true &amp;&amp; len v == 0 &amp;&amp; len v &gt;= 0}</span><span class='hs-conid'>[]</span></a> 
+<span class=hs-linenum>110: </span>
+<span class=hs-linenum>111: </span> <span class='hs-comment'>-- if n &gt; 0</span>
+<span class=hs-linenum>112: </span> <span class='hs-comment'>--               then x : clone (n-1) x</span>
+<span class=hs-linenum>113: </span> <span class='hs-comment'>--               else []</span>
+<span class=hs-linenum>114: </span>
+<span class=hs-linenum>115: </span><a class=annot href="#"><span class=annottext>[Char]</span><span class='hs-definition'>bob1</span></a> <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>if</span> <a class=annot href="#"><span class=annottext>Bool</span><span class='hs-num'>1</span></a> <a class=annot href="#"><span class=annottext>x1:Integer -&gt; x2:Integer -&gt; {v : Bool | Prop v &lt;=&gt; x1 &gt; v}</span><span class='hs-varop'>&gt;</span></a> <span class='hs-num'>2</span>              <span class='hs-keyword'>then</span> <a class=annot href="#"><span class=annottext>Addr# -&gt; [Char]</span><span class='hs-str'>"cat"</span></a>    <span class='hs-keyword'>else</span> <a class=annot href="#"><span class=annottext>Addr# -&gt; [Char]</span><span class='hs-str'>"mouse"</span></a>
+<span class=hs-linenum>116: </span><a class=annot href="#"><span class=annottext>[Char]</span><span class='hs-definition'>bob2</span></a> <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>if</span> <a class=annot href="#"><span class=annottext>{v : [Integer] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-keyglyph'>[</span></a><span class='hs-num'>1</span><span class='hs-layout'>,</span><span class='hs-num'>2</span><span class='hs-layout'>,</span><span class='hs-num'>3</span><span class='hs-keyglyph'>]</span> <a class=annot href="#"><span class=annottext>x1:[Integer] -&gt; x2:[Integer] -&gt; {v : Bool | Prop v &lt;=&gt; x1 == v}</span><span class='hs-varop'>==</span></a> <a class=annot href="#"><span class=annottext>{v : [Integer] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-num'>1</span></a><a class=annot href="#"><span class=annottext>x1:Integer
+-&gt; x2:[Integer]
+-&gt; {v : [Integer] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a><a class=annot href="#"><span class=annottext>{v : [Integer] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-num'>2</span></a><a class=annot href="#"><span class=annottext>x1:Integer
+-&gt; x2:[Integer]
+-&gt; {v : [Integer] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a><a class=annot href="#"><span class=annottext>{v : [Integer] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-num'>3</span></a><a class=annot href="#"><span class=annottext>x1:Integer
+-&gt; x2:[Integer]
+-&gt; {v : [Integer] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a><a class=annot href="#"><span class=annottext>{v : [Integer] | null v &lt;=&gt; false &amp;&amp; len v &gt;= 0}</span><span class='hs-num'>4</span></a><a class=annot href="#"><span class=annottext>x1:Integer
+-&gt; x2:[Integer]
+-&gt; {v : [Integer] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a><a class=annot href="#"><span class=annottext>{v : [Integer] | null v &lt;=&gt; true &amp;&amp; len v == 0 &amp;&amp; len v &gt;= 0}</span><span class='hs-conid'>[]</span></a> <span class='hs-keyword'>then</span> <a class=annot href="#"><span class=annottext>Addr# -&gt; [Char]</span><span class='hs-str'>"hellow"</span></a> <span class='hs-keyword'>else</span> <a class=annot href="#"><span class=annottext>Addr# -&gt; [Char]</span><span class='hs-str'>"world"</span></a>
+<span class=hs-linenum>117: </span>
+<span class=hs-linenum>118: </span><a class=annot href="#"><span class=annottext>forall a. Bool -&gt; a -&gt; a -&gt; a</span><span class='hs-definition'>ite</span></a> <span class='hs-conid'>True</span>  <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>e1</span></a> <span class='hs-keyword'>_</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == e1}</span><span class='hs-varid'>e1</span></a>
+<span class=hs-linenum>119: </span><span class='hs-definition'>ite</span> <span class='hs-conid'>False</span> <span class='hs-keyword'>_</span> <span class='hs-varid'>e2</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>e2</span></a>
+<span class=hs-linenum>120: </span>
+<span class=hs-linenum>121: </span>
+<span class=hs-linenum>122: </span><span class='hs-comment'>{- 
+
+function ite(b, e1, e2){
+  return b ? e1 : e2;
+}
+
+function clone(n, x){
+  ite(n &gt; 0, tail.push(x), new Array());
+}
+
+-}</span>
+<span class=hs-linenum>133: </span><span class='hs-comment'>{- 
+
+
+
+
+
+
+
+               
+clone n x   = if n == 0 
+                then [] 
+                else x : (clone (n-1) x)
+
+--}</span>
+<span class=hs-linenum>147: </span>
+<span class=hs-linenum>148: </span><span class='hs-comment'>-- | Cleaner, with "guards"</span>
+<span class=hs-linenum>149: </span>
+<span class=hs-linenum>150: </span><a class=annot href="#"><span class=annottext>forall a b.
+(Ord [Bivariant]
+[] a, Num [Bivariant]
+[] a) =&gt;
+a -&gt; b -&gt; [b]</span><span class='hs-definition'>clone'</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>n</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a> 
+<span class=hs-linenum>151: </span>  <span class='hs-keyglyph'>|</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == n}</span><span class='hs-varid'>n</span></a> <a class=annot href="#"><span class=annottext>x1:a -&gt; x2:a -&gt; {v : Bool | Prop v &lt;=&gt; x1 &gt; v}</span><span class='hs-varop'>&gt;</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-num'>0</span></a>     <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>x1:a
+-&gt; x2:[a]
+-&gt; {v : [a] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>forall a b.
+(Ord [Bivariant]
+[] a, Num [Bivariant]
+[] a) =&gt;
+a -&gt; b -&gt; [b]</span><span class='hs-varid'>clone'</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{VV : a | VV == n}</span><span class='hs-varid'>n</span></a><a class=annot href="#"><span class=annottext>x1:a -&gt; x2:a -&gt; {VV : a | VV == x1 - x2}</span><span class='hs-comment'>-</span></a><a class=annot href="#"><span class=annottext>a</span><span class='hs-num'>1</span></a><span class='hs-layout'>)</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a>
+<span class=hs-linenum>152: </span>  <span class='hs-keyglyph'>|</span> <span class='hs-varid'>otherwise</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : [a] | null v &lt;=&gt; true &amp;&amp; len v == 0}</span><span class='hs-conid'>[]</span></a> 
+<span class=hs-linenum>153: </span>
+<span class=hs-linenum>154: </span><span class='hs-comment'>-- | Cleaner, with "pattern matching"</span>
+<span class=hs-linenum>155: </span>
+<span class=hs-linenum>156: </span><a class=annot href="#"><span class=annottext>forall a b.
+(Num [Bivariant]
+[] a, Eq [Contravariant]
+[] a) =&gt;
+b -&gt; a -&gt; [b]</span><span class='hs-definition'>clone''</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a> <span class='hs-num'>0</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>forall a &lt;p :: a a -&gt; Prop&gt;.
+{v : [a]&lt;\x4 VV -&gt; p x4&gt; | null v &lt;=&gt; true &amp;&amp; len v == 0}</span><span class='hs-conid'>[]</span></a>
+<span class=hs-linenum>157: </span><span class='hs-definition'>clone''</span> <span class='hs-varid'>x</span> <span class='hs-varid'>n</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>x1:a
+-&gt; x2:[a]
+-&gt; {v : [a] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>forall a b.
+(Num [Bivariant]
+[] a, Eq [Contravariant]
+[] a) =&gt;
+b -&gt; a -&gt; [b]</span><span class='hs-varid'>clone''</span></a> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>n</span></a><a class=annot href="#"><span class=annottext>x1:a -&gt; x2:a -&gt; {VV : a | VV == x1 - x2}</span><span class='hs-comment'>-</span></a><a class=annot href="#"><span class=annottext>a</span><span class='hs-num'>1</span></a><span class='hs-layout'>)</span>
+<span class=hs-linenum>158: </span>
+<span class=hs-linenum>159: </span>
+<span class=hs-linenum>160: </span>
+<span class=hs-linenum>161: </span><span class='hs-comment'>-- append :: [a] -&gt; [a] -&gt; [a]</span>
+<span class=hs-linenum>162: </span><span class='hs-comment'>-- append [1,2,3] [4,5,6] =========&gt; [1,2,3,4,5,6]</span>
+<span class=hs-linenum>163: </span>
+<span class=hs-linenum>164: </span>
+<span class=hs-linenum>165: </span>
+<span class=hs-linenum>166: </span>
+<span class=hs-linenum>167: </span><span class='hs-comment'>-- | An If-Then-Else function</span>
+<span class=hs-linenum>168: </span>
+<span class=hs-linenum>169: </span><a class=annot href="#"><span class=annottext>forall a. Bool -&gt; a -&gt; a -&gt; a</span><span class='hs-definition'>ifThenElse</span></a> <span class='hs-conid'>True</span> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>thenExpr</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>elseExpr</span></a>  <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == thenExpr}</span><span class='hs-varid'>thenExpr</span></a>
+<span class=hs-linenum>170: </span><span class='hs-definition'>ifThenElse</span> <span class='hs-conid'>False</span> <span class='hs-varid'>thenExpr</span> <span class='hs-varid'>elseExpr</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == elseExpr}</span><span class='hs-varid'>elseExpr</span></a>
+<span class=hs-linenum>171: </span>
+<span class=hs-linenum>172: </span>
+<span class=hs-linenum>173: </span>
+<span class=hs-linenum>174: </span><a class=annot href="#"><span class=annottext>forall a b.
+(Num [Bivariant]
+[] a, Eq [Contravariant]
+[] a) =&gt;
+b -&gt; a -&gt; [b]</span><span class='hs-definition'>clone'''</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>n</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>Bool -&gt; [a] -&gt; [a] -&gt; [a]</span><span class='hs-varid'>ifThenElse</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{VV : a | VV == n}</span><span class='hs-varid'>n</span></a> <a class=annot href="#"><span class=annottext>x1:a -&gt; x2:a -&gt; {v : Bool | Prop v &lt;=&gt; x1 == v}</span><span class='hs-varop'>==</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-num'>0</span></a><span class='hs-layout'>)</span> <a class=annot href="#"><span class=annottext>{v : [a] | null v &lt;=&gt; true &amp;&amp; len v == 0 &amp;&amp; len v &gt;= 0}</span><span class='hs-conid'>[]</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>x1:a
+-&gt; x2:[a]
+-&gt; {v : [a] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>forall a b.
+(Num [Bivariant]
+[] a, Eq [Contravariant]
+[] a) =&gt;
+b -&gt; a -&gt; [b]</span><span class='hs-varid'>clone'''</span></a> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{VV : a | VV == n}</span><span class='hs-varid'>n</span></a><a class=annot href="#"><span class=annottext>x1:a -&gt; x2:a -&gt; {VV : a | VV == x1 - x2}</span><span class='hs-comment'>-</span></a><a class=annot href="#"><span class=annottext>a</span><span class='hs-num'>1</span></a><span class='hs-layout'>)</span><span class='hs-layout'>)</span> 
+<span class=hs-linenum>175: </span>
+<span class=hs-linenum>176: </span>
+<span class=hs-linenum>177: </span><span class='hs-comment'>-- if True then 1 else error "DIE DEI DIE"</span>
+<span class=hs-linenum>178: </span><span class='hs-comment'>--     ===&gt; 1</span>
+<span class=hs-linenum>179: </span><span class='hs-comment'>--</span>
+<span class=hs-linenum>180: </span><span class='hs-comment'>-- In JavaScript:</span>
+<span class=hs-linenum>181: </span><span class='hs-comment'>--</span>
+<span class=hs-linenum>182: </span><span class='hs-comment'>-- function ifThenElse(cond, thenB, elseB) { </span>
+<span class=hs-linenum>183: </span><span class='hs-comment'>--   return cond ? thenB : elseB ;</span>
+<span class=hs-linenum>184: </span><span class='hs-comment'>-- }</span>
+<span class=hs-linenum>185: </span><span class='hs-comment'>-- var z = ifThenElse(true, 1, alert("DIE DIE DIE"));</span>
+<span class=hs-linenum>186: </span>
+<span class=hs-linenum>187: </span>
+<span class=hs-linenum>188: </span><a class=annot href="#"><span class=annottext>forall a.
+(Ord [Bivariant]
+[] a, Num [Bivariant]
+[] a) =&gt;
+a -&gt; a -&gt; [a]</span><span class='hs-definition'>range</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>lo</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>hi</span></a> 
+<span class=hs-linenum>189: </span>  <span class='hs-keyglyph'>|</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == lo}</span><span class='hs-varid'>lo</span></a> <a class=annot href="#"><span class=annottext>x1:a -&gt; x2:a -&gt; {v : Bool | Prop v &lt;=&gt; x1 &lt;= v}</span><span class='hs-varop'>&lt;=</span></a> <a class=annot href="#"><span class=annottext>{VV : a | VV == hi}</span><span class='hs-varid'>hi</span></a>  <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == lo}</span><span class='hs-varid'>lo</span></a> <a class=annot href="#"><span class=annottext>x1:a
+-&gt; x2:[a]
+-&gt; {v : [a] | null v &lt;=&gt; false &amp;&amp; xListSelector v == x1 &amp;&amp; len v == 1 + len x2 &amp;&amp; xsListSelector v == x2}</span><span class='hs-conop'>:</span></a> <a class=annot href="#"><span class=annottext>{v : [a] | v == rest &amp;&amp; len v &gt;= 0}</span><span class='hs-varid'>rest</span></a>
+<span class=hs-linenum>190: </span>  <span class='hs-keyglyph'>|</span> <span class='hs-varid'>otherwise</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : [a] | null v &lt;=&gt; true &amp;&amp; len v == 0}</span><span class='hs-conid'>[]</span></a>
+<span class=hs-linenum>191: </span>  <span class='hs-keyword'>where</span>
+<span class=hs-linenum>192: </span>    <a class=annot href="#"><span class=annottext>[a]</span><span class='hs-varid'>rest</span></a>      <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>forall a.
+(Ord [Bivariant]
+[] a, Num [Bivariant]
+[] a) =&gt;
+a -&gt; a -&gt; [a]</span><span class='hs-varid'>range</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{VV : a | VV == lo}</span><span class='hs-varid'>lo</span></a><a class=annot href="#"><span class=annottext>x1:a -&gt; x2:a -&gt; {VV : a | VV == x1 + x2}</span><span class='hs-varop'>+</span></a><a class=annot href="#"><span class=annottext>a</span><span class='hs-num'>1</span></a><span class='hs-layout'>)</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == hi}</span><span class='hs-varid'>hi</span></a>
+<span class=hs-linenum>193: </span>
+<span class=hs-linenum>194: </span>
+<span class=hs-linenum>195: </span>
+<span class=hs-linenum>196: </span>
+<span class=hs-linenum>197: </span><span class='hs-comment'>-- | Generate the elements in a `range lo hi`</span>
+<span class=hs-linenum>198: </span>
+<span class=hs-linenum>199: </span><span class='hs-comment'>-- &gt;&gt;&gt; range 1 5</span>
+<span class=hs-linenum>200: </span><span class='hs-comment'>-- [1,2,3,4,5]</span>
+<span class=hs-linenum>201: </span>
+<span class=hs-linenum>202: </span><span class='hs-comment'>-- &gt;&gt;&gt; range 5 1</span>
+<span class=hs-linenum>203: </span><span class='hs-comment'>-- []</span>
+<span class=hs-linenum>204: </span>
+<span class=hs-linenum>205: </span>
+<span class=hs-linenum>206: </span><span class='hs-comment'>-- range :: ???</span>
+<span class=hs-linenum>207: </span>
+<span class=hs-linenum>208: </span>
+<span class=hs-linenum>209: </span>
+<span class=hs-linenum>210: </span>
+<span class=hs-linenum>211: </span>
+<span class=hs-linenum>212: </span>
+<span class=hs-linenum>213: </span>
+<span class=hs-linenum>214: </span>
+<span class=hs-linenum>215: </span>
+<span class=hs-linenum>216: </span>
+<span class=hs-linenum>217: </span>
+<span class=hs-linenum>218: </span>
+<span class=hs-linenum>219: </span><span class='hs-definition'>range</span> <span class='hs-varid'>lo</span> <span class='hs-varid'>hi</span> 
+<span class=hs-linenum>220: </span>  <span class='hs-keyglyph'>|</span> <span class='hs-varid'>lo</span> <span class='hs-varop'>&gt;</span> <span class='hs-varid'>hi</span>   <span class='hs-keyglyph'>=</span> <span class='hs-conid'>[]</span>
+<span class=hs-linenum>221: </span>  <span class='hs-keyglyph'>|</span> <span class='hs-varid'>otherwise</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>lo</span> <span class='hs-conop'>:</span> <span class='hs-varid'>range</span> <span class='hs-layout'>(</span><span class='hs-varid'>lo</span> <span class='hs-varop'>+</span> <span class='hs-num'>1</span><span class='hs-layout'>)</span> <span class='hs-varid'>hi</span>
+<span class=hs-linenum>222: </span>
+<span class=hs-linenum>223: </span>
+<span class=hs-linenum>224: </span>
+<span class=hs-linenum>225: </span>
+<span class=hs-linenum>226: </span>
+<span class=hs-linenum>227: </span><span class='hs-comment'>-- | `sum` the elements of a list</span>
+<span class=hs-linenum>228: </span>
+<span class=hs-linenum>229: </span><span class='hs-comment'>-- &gt;&gt;&gt; sum []</span>
+<span class=hs-linenum>230: </span><span class='hs-comment'>-- 0</span>
+<span class=hs-linenum>231: </span>
+<span class=hs-linenum>232: </span><span class='hs-comment'>-- &gt;&gt;&gt; sum [1]</span>
+<span class=hs-linenum>233: </span><span class='hs-comment'>-- 1</span>
+<span class=hs-linenum>234: </span>
+<span class=hs-linenum>235: </span><span class='hs-comment'>-- &gt;&gt;&gt; sum [1,2,3]</span>
+<span class=hs-linenum>236: </span><span class='hs-comment'>-- 6</span>
+<span class=hs-linenum>237: </span>
+<span class=hs-linenum>238: </span><span class='hs-comment'>-- sum :: ???</span>
+<span class=hs-linenum>239: </span>
+<span class=hs-linenum>240: </span>
+<span class=hs-linenum>241: </span>
+<span class=hs-linenum>242: </span>
+<span class=hs-linenum>243: </span>
+<span class=hs-linenum>244: </span>
+<span class=hs-linenum>245: </span>
+<span class=hs-linenum>246: </span>
+<span class=hs-linenum>247: </span>
+<span class=hs-linenum>248: </span>
+<span class=hs-linenum>249: </span><a class=annot href="#"><span class=annottext>forall a. (Num [Bivariant]
+[] a) =&gt; [a] -&gt; a</span><span class='hs-definition'>sum</span></a> <span class='hs-conid'>[]</span>     <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Integer | v == 0}</span><span class='hs-num'>0</span></a>
+<span class=hs-linenum>250: </span><span class='hs-definition'>sum</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-conop'>:</span><span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>x1:a -&gt; x2:a -&gt; {VV : a | VV == x1 + x2}</span><span class='hs-varop'>+</span></a> <a class=annot href="#"><span class=annottext>forall a. (Num [Bivariant]
+[] a) =&gt; [a] -&gt; a</span><span class='hs-varid'>sum</span></a> <a class=annot href="#"><span class=annottext>{v : [a] | v == xs &amp;&amp; len v &gt;= 0}</span><span class='hs-varid'>xs</span></a>
+<span class=hs-linenum>251: </span>
+<span class=hs-linenum>252: </span>
+<span class=hs-linenum>253: </span>
+<span class=hs-linenum>254: </span>
+<span class=hs-linenum>255: </span>
+<span class=hs-linenum>256: </span>
+<span class=hs-linenum>257: </span><span class='hs-comment'>-------------------------------------------------------------</span>
+<span class=hs-linenum>258: </span><span class='hs-comment'>-- | Creating Types -----------------------------------------</span>
+<span class=hs-linenum>259: </span><span class='hs-comment'>-------------------------------------------------------------</span>
+<span class=hs-linenum>260: </span>
+<span class=hs-linenum>261: </span><span class='hs-keyword'>data</span> <span class='hs-conid'>Shape</span>  <span class='hs-keyglyph'>=</span> <span class='hs-conid'>C</span> <span class='hs-conid'>XPos</span> <span class='hs-conid'>YPos</span> <span class='hs-conid'>Radius</span> 
+<span class=hs-linenum>262: </span>            <span class='hs-keyglyph'>|</span> <span class='hs-conid'>S</span> <span class='hs-conid'>XPos</span> <span class='hs-conid'>YPos</span> <span class='hs-conid'>Side</span>
+<span class=hs-linenum>263: </span>
+<span class=hs-linenum>264: </span><span class='hs-keyword'>type</span> <span class='hs-conid'>XPos</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Double</span>
+<span class=hs-linenum>265: </span><span class='hs-keyword'>type</span> <span class='hs-conid'>YPos</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Double</span>
+<span class=hs-linenum>266: </span><span class='hs-keyword'>type</span> <span class='hs-conid'>Side</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Double</span>
+<span class=hs-linenum>267: </span><span class='hs-keyword'>type</span> <span class='hs-conid'>Radius</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Double</span>
+<span class=hs-linenum>268: </span> 
+<span class=hs-linenum>269: </span><span class='hs-definition'>area</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Shape</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Double</span>
+<span class=hs-linenum>270: </span><a class=annot href="#"><span class=annottext>Shape -&gt; Double</span><span class='hs-definition'>area</span></a> <span class='hs-layout'>(</span><span class='hs-conid'>S</span> <span class='hs-keyword'>_</span> <span class='hs-keyword'>_</span> <span class='hs-varid'>side</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : Double | v == side}</span><span class='hs-varid'>side</span></a> <a class=annot href="#"><span class=annottext>x1:Double
+-&gt; x2:Double
+-&gt; {v : Double | x1 &gt; 0 &amp;&amp; x2 &gt; 0 =&gt; v &gt;= x1 &amp;&amp; v &gt;= x2 &amp;&amp; x1 &gt; 1 &amp;&amp; x2 &gt; 1 =&gt; v &gt; x1 &amp;&amp; v &gt; x2 &amp;&amp; x1 == 0 || x2 == 0 =&gt; v == 0}</span><span class='hs-varop'>*</span></a> <a class=annot href="#"><span class=annottext>{v : Double | v == side}</span><span class='hs-varid'>side</span></a>
+<span class=hs-linenum>271: </span><span class='hs-definition'>area</span> <span class='hs-layout'>(</span><span class='hs-conid'>C</span> <span class='hs-keyword'>_</span> <span class='hs-keyword'>_</span> <span class='hs-varid'>radius</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>Double</span><span class='hs-varid'>pi</span></a> <a class=annot href="#"><span class=annottext>x1:Double
+-&gt; x2:Double
+-&gt; {v : Double | x1 &gt; 0 &amp;&amp; x2 &gt; 0 =&gt; v &gt;= x1 &amp;&amp; v &gt;= x2 &amp;&amp; x1 &gt; 1 &amp;&amp; x2 &gt; 1 =&gt; v &gt; x1 &amp;&amp; v &gt; x2 &amp;&amp; x1 == 0 || x2 == 0 =&gt; v == 0}</span><span class='hs-varop'>*</span></a> <a class=annot href="#"><span class=annottext>{v : Double | v == radius}</span><span class='hs-varid'>radius</span></a> <a class=annot href="#"><span class=annottext>x1:Double
+-&gt; x2:Double
+-&gt; {v : Double | x1 &gt; 0 &amp;&amp; x2 &gt; 0 =&gt; v &gt;= x1 &amp;&amp; v &gt;= x2 &amp;&amp; x1 &gt; 1 &amp;&amp; x2 &gt; 1 =&gt; v &gt; x1 &amp;&amp; v &gt; x2 &amp;&amp; x1 == 0 || x2 == 0 =&gt; v == 0}</span><span class='hs-varop'>*</span></a> <a class=annot href="#"><span class=annottext>{v : Double | v == radius}</span><span class='hs-varid'>radius</span></a>
+<span class=hs-linenum>272: </span>
+<span class=hs-linenum>273: </span>
+<span class=hs-linenum>274: </span><span class='hs-comment'>-- ADDS TWO NUMBERS!!!</span>
+<span class=hs-linenum>275: </span><a class=annot href="#"><span class=annottext>forall a b c. b -&gt; c -&gt; a</span><span class='hs-definition'>docrazymath</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>y</span></a>  <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a | VV == x}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>a -&gt; b -&gt; c</span><span class='hs-varop'>`undefined`</span></a> <a class=annot href="#"><span class=annottext>{VV : a | VV == y}</span><span class='hs-varid'>y</span></a>
+<span class=hs-linenum>276: </span>
+<span class=hs-linenum>277: </span><span class='hs-comment'>-- "READS THE USERS INPUT"</span>
+<span class=hs-linenum>278: </span><a class=annot href="#"><span class=annottext>forall a b c. a -&gt; b -&gt; c</span><span class='hs-definition'>getUserInput</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>y</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>forall a. a</span><span class='hs-varid'>undefined</span></a>
+<span class=hs-linenum>279: </span>
+<span class=hs-linenum>280: </span>
+<span class=hs-linenum>281: </span>
+<span class=hs-linenum>282: </span>
+<span class=hs-linenum>283: </span>
+<span class=hs-linenum>284: </span>
+<span class=hs-linenum>285: </span>
+<span class=hs-linenum>286: </span>
+<span class=hs-linenum>287: </span>
+<span class=hs-linenum>288: </span>
+<span class=hs-linenum>289: </span>
+<span class=hs-linenum>290: </span><span class='hs-comment'>-- data Circle = C (Double, Double, Double)</span>
+<span class=hs-linenum>291: </span><span class='hs-comment'>-- C :: (Double, Double, Double) -&gt; Circle</span>
+<span class=hs-linenum>292: </span><span class='hs-comment'>-- radius (C (_,_,r)) = r </span>
+<span class=hs-linenum>293: </span><span class='hs-comment'>-- C (0,1,55)</span>
+<span class=hs-linenum>294: </span><span class='hs-comment'>--</span>
+<span class=hs-linenum>295: </span><span class='hs-comment'>--</span>
+<span class=hs-linenum>296: </span><span class='hs-comment'>--</span>
+<span class=hs-linenum>297: </span><span class='hs-comment'>--</span>
+<span class=hs-linenum>298: </span><span class='hs-comment'>--</span>
+<span class=hs-linenum>299: </span><span class='hs-comment'>-- data Circle = C Double Double Double</span>
+<span class=hs-linenum>300: </span><span class='hs-comment'>-- data Square = S Double Double Double</span>
+<span class=hs-linenum>301: </span>
+<span class=hs-linenum>302: </span><span class='hs-comment'>-- areaCircle (C x y r) = pi * r * r</span>
+<span class=hs-linenum>303: </span><span class='hs-comment'>-- areaSquare (S x y d) = d * d</span>
+<span class=hs-linenum>304: </span>
+<span class=hs-linenum>305: </span>
+<span class=hs-linenum>306: </span>
+<span class=hs-linenum>307: </span>
+<span class=hs-linenum>308: </span><span class='hs-comment'>-- data [a] = [] </span>
+<span class=hs-linenum>309: </span><span class='hs-comment'>--          | (:) a [a]</span>
+<span class=hs-linenum>310: </span>
+<span class=hs-linenum>311: </span>
+<span class=hs-linenum>312: </span><span class='hs-comment'>-- data Circle = Kanye Double Double Double</span>
+<span class=hs-linenum>313: </span><span class='hs-comment'>-- Circle :: Double -&gt; Double -&gt; Double -&gt; Circle</span>
+<span class=hs-linenum>314: </span>
+<span class=hs-linenum>315: </span>
+<span class=hs-linenum>316: </span><span class='hs-comment'>-- data Shape  = Circle Double Double Double</span>
+<span class=hs-linenum>317: </span><span class='hs-comment'>--             | Square Double Double Double</span>
+<span class=hs-linenum>318: </span><span class='hs-comment'>--             | Poly [(Double, Double)]</span>
+<span class=hs-linenum>319: </span><span class='hs-comment'>--             deriving (Show)</span>
+<span class=hs-linenum>320: </span>
+<span class=hs-linenum>321: </span>
+<span class=hs-linenum>322: </span>
+<span class=hs-linenum>323: </span>
+<span class=hs-linenum>324: </span>
+<span class=hs-linenum>325: </span><span class='hs-comment'>{- 
+
+area (Circle _ _ r)    = pi * r * r
+area (Square _ _ d)    = d * d
+-- area (Poly ps)      = areaPoly ps
+
+areaPoly (p1:p2:p3:rest) = areaTriangle p1 p2 p3 + areaPoly (p1:p3:rest)
+areaPoly _               = 0
+
+
+areaTriangle = undefined -- fill in as exercise
+
+c0 = Circle 0 0 2.3
+c1 = Circle 0 1 1.31
+s0 = Square 12 1 12312
+p0 = Poly   [(0,0), (4,4), (92, 92)]
+
+-}</span>
+<span class=hs-linenum>343: </span>
+<span class=hs-linenum>344: </span><span class='hs-comment'>-- | IO</span>
+<span class=hs-linenum>345: </span>
+<span class=hs-linenum>346: </span>
+<span class=hs-linenum>347: </span><a class=annot href="#"><span class=annottext>{v : (IO ()) | v == Main.main}</span><span class='hs-definition'>main</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>[Char] -&gt; (IO ())</span><span class='hs-varid'>putStrLn</span></a> <a class=annot href="#"><span class=annottext>{v : [Char] | len v &gt;= 0}</span><span class='hs-str'>"Hello World!"</span></a>
+<span class=hs-linenum>348: </span>
+<span class=hs-linenum>349: </span>
+<span class=hs-linenum>350: </span>
+<span class=hs-linenum>351: </span>
+<span class=hs-linenum>352: </span><span class='hs-comment'>-- main = do putStrLn "What is your name ?"</span>
+<span class=hs-linenum>353: </span><span class='hs-comment'>--           n &lt;- getLine</span>
+<span class=hs-linenum>354: </span><span class='hs-comment'>--           putStrLn ("Happy New Year " ++ n)</span>
+<span class=hs-linenum>355: </span>
+<span class=hs-linenum>356: </span>
+<span class=hs-linenum>357: </span><span class='hs-comment'>-- | Lets break it down. These just *actions*, not executed.</span>
+<span class=hs-linenum>358: </span>          
+<span class=hs-linenum>359: </span><a class=annot href="#"><span class=annottext>(IO ())</span><span class='hs-definition'>act1</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>[Char] -&gt; (IO ())</span><span class='hs-varid'>putStrLn</span></a> <a class=annot href="#"><span class=annottext>{v : [Char] | len v &gt;= 0}</span><span class='hs-str'>"This is a string on a line"</span></a>
+<span class=hs-linenum>360: </span><a class=annot href="#"><span class=annottext>(IO ())</span><span class='hs-definition'>act2</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>[Char] -&gt; (IO ())</span><span class='hs-varid'>putStrLn</span></a> <a class=annot href="#"><span class=annottext>{v : [Char] | len v &gt;= 0}</span><span class='hs-str'>"This is another string on a line"</span></a>
+<span class=hs-linenum>361: </span><a class=annot href="#"><span class=annottext>(IO ())</span><span class='hs-definition'>act3</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>[Char] -&gt; (IO ())</span><span class='hs-varid'>putStrLn</span></a> <a class=annot href="#"><span class=annottext>{v : [Char] | len v &gt;= 0}</span><span class='hs-str'>"This is the last string i promise you"</span></a>
+<span class=hs-linenum>362: </span>
+<span class=hs-linenum>363: </span><span class='hs-comment'>-- | acts is just a LIST-OF actions (which is NOT an action)</span>
+<span class=hs-linenum>364: </span>
+<span class=hs-linenum>365: </span><a class=annot href="#"><span class=annottext>[(IO ())]</span><span class='hs-definition'>acts</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{v : [(IO ())] | null v &lt;=&gt; false &amp;&amp; xListSelector v == Main.act2 &amp;&amp; len v &gt;= 0}</span><span class='hs-keyglyph'>[</span></a><a class=annot href="#"><span class=annottext>{v : (IO ()) | v == Main.act1}</span><span class='hs-varid'>act1</span></a><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>{v : (IO ()) | v == Main.act2}</span><span class='hs-varid'>act2</span></a><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>{v : (IO ()) | v == Main.act3}</span><span class='hs-varid'>act3</span></a><span class='hs-keyglyph'>]</span>
+<span class=hs-linenum>366: </span>
+<span class=hs-linenum>367: </span><span class='hs-comment'>-- | bigAct is the result of COMPOSING the actions</span>
+<span class=hs-linenum>368: </span>
+<span class=hs-linenum>369: </span><a class=annot href="#"><span class=annottext>(IO ())</span><span class='hs-definition'>bigAct</span></a> <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>do</span> <a class=annot href="#"><span class=annottext>{v : (IO ()) | v == Main.act1}</span><span class='hs-varid'>act1</span></a>
+<span class=hs-linenum>370: </span>            <a class=annot href="#"><span class=annottext>{v : (IO ()) | v == Main.act2}</span><span class='hs-varid'>act2</span></a>
+<span class=hs-linenum>371: </span>            <a class=annot href="#"><span class=annottext>{v : (IO ()) | v == Main.act3}</span><span class='hs-varid'>act3</span></a>
+<span class=hs-linenum>372: </span>
+<span class=hs-linenum>373: </span>      
+<span class=hs-linenum>374: </span><span class='hs-definition'>act</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>IO</span> <span class='hs-conid'>()</span>
+<span class=hs-linenum>375: </span><a class=annot href="#"><span class=annottext>(IO ())</span><span class='hs-definition'>act</span></a> <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>do</span> <a class=annot href="#"><span class=annottext>[Char] -&gt; (IO ())</span><span class='hs-varid'>putStrLn</span></a> <a class=annot href="#"><span class=annottext>{v : [Char] | len v &gt;= 0}</span><span class='hs-str'>"Hey? "</span></a> 
+<span class=hs-linenum>376: </span>         <a class=annot href="#"><span class=annottext>[Char]</span><span class='hs-varid'>name</span></a> <span class='hs-keyglyph'>&lt;-</span> <a class=annot href="#"><span class=annottext>{v : (IO [Char]) | v == System.IO.getLine}</span><span class='hs-varid'>getLine</span></a> 
+<span class=hs-linenum>377: </span>         <a class=annot href="#"><span class=annottext>[Char] -&gt; (IO ())</span><span class='hs-varid'>putStrLn</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>{v : [Char] | len v &gt;= 0}</span><span class='hs-str'>"Hello "</span></a> <a class=annot href="#"><span class=annottext>x1:[Char] -&gt; x2:[Char] -&gt; {v : [Char] | len v == len x1 + len v}</span><span class='hs-varop'>++</span></a> <a class=annot href="#"><span class=annottext>{v : [Char] | v == name &amp;&amp; len v &gt;= 0}</span><span class='hs-varid'>name</span></a><span class='hs-layout'>)</span>
+<span class=hs-linenum>378: </span>
+</pre>
+</body>
+</html>

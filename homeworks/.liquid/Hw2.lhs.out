@@ -1,0 +1,4 @@
+CRASH: Invalid Source
+ /Users/rjhala/teaching/230-wi15/web/homeworks/Hw2.lhs:179:13-14: Error: GHC Error
+     Not in scope: type constructor or class ‘Op’
+A data constructor of that name is in scope; did you mean DataKinds?

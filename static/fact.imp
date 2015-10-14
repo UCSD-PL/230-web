@@ -1,0 +1,11 @@
+N := 2;
+F := 1;
+while N > 0 do
+  X := N;
+  Z := F;
+  while X > 1 do
+    F := Z + F;
+    X := X - 1
+  endwhile; 
+  N := N - 1
+endwhile
