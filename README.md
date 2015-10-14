@@ -1,20 +1,31 @@
-Install Libraries
---------------------
+Website for CSE230
+==================
 
-   cabal install hakyll -fhighlighting pandoc
+
+To build, make sure you install [stack](https://github.com/commercialhaskell/stack/blob/master/doc/install_and_upgrade.md)
 
 
 Build the site
 --------------
 
-make all
-	rebuilds the site (locally)
+To *build* the site locally into `_site/`:
 
+```
+make 
+```
+
+To *delete* all temporary files:
+
+```
 make clean
-	nukes all the temporary files 
+```
 
+To *update* the webpage remotely (FIXME):
+
+```
 make update
-	updates the webpage on csefast
+```
+
 
 
 Add new lectures or homeworks
@@ -36,8 +47,7 @@ The analogous instructions apply to create a new homework.
 
 Todo
 ----
+
 Auto-generate Lectures and Homeworks (and the links) 
 from directories.
-
-
 
