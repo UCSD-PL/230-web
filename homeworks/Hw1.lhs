@@ -1,6 +1,51 @@
 ---
-title: Homework #1, Due Monday 1/26/15
+title: Homework #1, Due Monday 1/25/15
 ---
+
+Preliminaries
+-------------
+
+Before starting this assignment:
+
+1. Download and install [Stack](http://docs.haskellstack.org/en/stable/README.html#how-to-install)
+2. Download the assignment [code bundle](/static/hw1.tar.gz).
+3. Unpack bundle `tar -zxvf hw1.tar.gz`
+3. Verify that things build etc. by:
+
+~~~
+$ stack build
+... ( wait for a long time )
+$ stack ghci Hw1
+...
+*Hw1> :l SOE/src/Draw.lhs
+...
+*Draw> main0
+~~~
+
+You should see a window with some shapes in it. Now if you do:
+
+~~~
+> :l Main.hs
+> main
+~~~
+
+You should get an exception:
+
+~~~
+*** Exception: Define me!
+~~~
+
+Interacting with GHCi
+---------------------
+
+1. Keep open a `ghci` (by running `stack ghci Hw1` in the command prompt),
+2. Load `Hw1.hs` by typing `:l Hw1.hs`
+3. Edit `Hw1.hs` to implement the various functions,
+4. After each edit, to test your code, do `:r` and test the function.
+
+There are fancy modes for various editors (vim, emacs, atom, sublime)
+that make the above even smoother. Feel free to investigate to your taste.
+
 
 Haskell Formalities
 -------------------
@@ -22,40 +67,10 @@ strings below
 > myEmail = "Write Your Email Here"
 > mySID   = "Write Your SID   Here"
 
-
-Preliminaries
--------------
-
-Before starting this assignment:
-
-* Download and install the [Haskell Platform](http://www.haskell.org/platform/).
-* Download the [SOE code bundle](/static/SOE-cse230.tar.gz).
-
-* Verify that it works by changing into the `SOE/src` directory and
-   running `ghci Draw.lhs`, then typing `main0` at the prompt:
- 
-~~~
-cd SOE/src
-ghci Draw.lhs
-*Draw> main0
-~~~
-
-  You should see a window with some shapes in it.
-
-**NOTE:** If you have trouble installing SOE, [see this page](soe-instructions.html)
-
-5. Download the required files for this assignment: [hw1.tar.gz](/static/hw1.tar.gz).
-   Unpack the files and make sure that you can successfully run the main program (in `Main.hs`).
-   We've provided a `Makefile`, which you can use if you like. You should see this output:
-
-~~~
-Main: Define me!
-~~~
-
 Part 1: Defining and Manipulating Shapes
 ----------------------------------------
 
-You will write all of your code in the `hw1.lhs` file, in the spaces
+You will write all of your code in the `Hw1.hs` file, in the spaces
 indicated. Do not alter the type annotations --- your code must
 typecheck with these types to be accepted.
 
@@ -66,8 +81,8 @@ The following are the definitions of shapes:
 >            | RtTriangle Side Side
 >            | Polygon [Vertex]
 >            deriving Show
-> 
-> type Radius = Float 
+>
+> type Radius = Float
 > type Side   = Float
 > type Vertex = (Float, Float)
 
@@ -76,10 +91,10 @@ The following are the definitions of shapes:
    built with the Polygon constructor.
 
 > rectangle :: Side -> Side -> Shape
-> rectangle = error "Define me!" 
+> rectangle = error "Define me!"
 
 > rtTriangle :: Side -> Side -> Shape
-> rtTriangle = error "Define me!" 
+> rtTriangle = error "Define me!"
 
 2. Define a function
 
@@ -104,15 +119,15 @@ The following are the definitions of shapes:
    To solve the puzzle, you must move all the discs from the starting peg
    to another by moving only one disc at a time and never stacking
    a larger disc on top of a smaller one.
-   
+
    To move $n$ discs from peg $a$ to peg $b$ using peg $c$ as temporary storage:
-   
+
    1. Move $n - 1$ discs from peg $a$ to peg $c$.
    2. Move the remaining disc from peg $a$ to peg $b$.
    3. Move $n - 1$ discs from peg $c$ to peg $b$.
-   
+
    Write a function
-   
+
 > hanoi :: Int -> String -> String -> String -> IO ()
 > hanoi = error "Define me!"
 
@@ -123,7 +138,7 @@ The following are the definitions of shapes:
 
   should emit the text
 
-~~~  
+~~~
 move disc from a to c
 move disc from a to b
 move disc from c to b
@@ -192,12 +207,12 @@ Now write a *non-recursive* version of the above.
 `addEachPair [(1,2), (20,21), (300,301)]` should return `[3,41,601]`
 
 > addEachPair :: [(Int, Int)] -> [Int]
-> addEachPair = error "Define me!" 
+> addEachPair = error "Define me!"
 
 Now write a *non-recursive* version of the above.
 
 > addEachPairNonRecursive :: [(Int, Int)] -> [Int]
-> addEachPairNonRecursive = error "Define me!" 
+> addEachPairNonRecursive = error "Define me!"
 
 `minList` should return the *smallest* value in the list. You may assume the
 input list is *non-empty*.
@@ -232,7 +247,7 @@ So: `fringe (Branch (Leaf 1) (Leaf 2))` should return `[1,2]`
 > fringe :: Tree a -> [a]
 > fringe = error "Define me!"
 
-`treeSize` should return the number of leaves in the tree. 
+`treeSize` should return the number of leaves in the tree.
 So: `treeSize (Branch (Leaf 1) (Leaf 2))` should return `2`.
 
 > treeSize :: Tree a -> Int
@@ -262,7 +277,7 @@ should return `(IBranch 1 (IBranch 2 ILeaf ILeaf) ILeaf)`.
 
 > takeTreeWhile :: (a -> Bool) -> InternalTree a -> InternalTree a
 > takeTreeWhile = error "Define me!"
- 
+
 Write the function map in terms of foldr:
 
 > myMap :: (a -> b) -> [a] -> [b]
@@ -324,7 +339,7 @@ this one value for purposes of this assignment. The XML value in
   information as `Play.hs`. You may want to have a look at it in your
   favorite browser.  The HTML in `sample.html` has the following structure
   (with whitespace added for readability):
-  
+
 ~~~
 <html>
   <body>
@@ -370,13 +385,13 @@ to `sample.html`.
 >
 > firstDiff :: Eq a => [a] -> [a] -> Maybe ([a],[a])
 > firstDiff [] [] = Nothing
-> firstDiff (c:cs) (d:ds) 
->      | c==d = firstDiff cs ds 
+> firstDiff (c:cs) (d:ds)
+>      | c==d = firstDiff cs ds
 >      | otherwise = Just (c:cs, d:ds)
 > firstDiff cs ds = Just (cs,ds)
-> 
+>
 > testResults :: String -> String -> IO ()
-> testResults file1 file2 = do 
+> testResults file1 file2 = do
 >   f1 <- readFile file1
 >   f2 <- readFile file2
 >   case firstDiff f1 f2 of
@@ -420,10 +435,11 @@ Submission Instructions
 
 * If working with a partner, you should both submit your assignments
   individually.
-* Make sure your `hw1.lhs` is accepted by GHC without errors or warnings.
+
+* Make sure your `Hw1.hs` is accepted by GHCi without errors or warnings.
+
 * Attach your `hw1.hs` file in an email to `cse230@goto.ucsd.edu` with the
-  subject "HW1" (minus the quotes).
-  *This address is unmonitored!*
+  subject "HW1" (minus the quotes). *This address is unmonitored!*
 
 Credits
 -------

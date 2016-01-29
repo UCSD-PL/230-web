@@ -1,4 +1,5 @@
 #!/usr/bin/env runhaskell
+module Lec3 where
 
 {-@ LIQUID "--short-names"    @-}
 {-@ LIQUID "--no-termination" @-}
@@ -6,9 +7,9 @@
 
 import Prelude hiding (sum)
 
-e1 :: Double  
+e1 :: Double
 e1 = 31 * (42 + 56)
-       
+
 e2 = 3 * (4.2 + 5.6) :: Double
 
 e3 :: Bool
@@ -24,7 +25,7 @@ zero = 0
 
 x = 12
 
-pos   :: Integer -> Bool 
+pos   :: Integer -> Bool
 pos x = x > 0
 
 -- pos 12 == 12 > 0 == True
@@ -38,7 +39,7 @@ zog = pat3 2 10
 pat :: (Int, Int, Int) -> Int
 pat (x, y, z) = x * (y + z)
 
-{- 
+{-
    mys ("cat", "dog", 49)   ======> 49
    mys (1, 2, 3)            ======> 3
    mys (True, False, "bob") ======> "bob"
@@ -46,7 +47,7 @@ pat (x, y, z) = x * (y + z)
 
 -- PATTERN MATCHING
 
-mys           :: (a, b, c) -> c 
+mys           :: (a, b, c) -> c
 mys (x, y, z) = z
 
 
@@ -67,59 +68,144 @@ e8 :: [String]
 e8 = "cat" : emp
 
 e9 :: [Double]
-e9 = 4.9 : emp 
+e9 = 4.9 : emp
 
 
-cons2          :: a -> a -> [a] -> [a] 
-cons2 x1 x2 xs = x1 : x2 : xs 
+cons2          :: a -> a -> [a] -> [a]
+cons2 x1 x2 xs = x1 : x2 : xs
+
+
+--------------------------------------------------------------------------------
+
+-- | Get first element of list
+--
+-- >>> firstElem [1,2,3]
+-- 1
+--
+-- >>> firstElem ["cat", "dog"]
+-- "cat"
+
+firstElem (x:_) = x
+
+-- firstElem ["cat", "dog", "cat"]
 
 
 
--- firstElem [1,2,3]                ===> 1
--- firstElem ["cat", "dog", "muse"]          ===> "cat"
--- firstElem ["cat", "dog", "goose", "muse"] ===> "cat"
-
-firstElem (x:_) = x 
 
 
 
+--
+-- >>> firstElem []
+-- ???
 
 
 
+--------------------------------------------------------------------------------
 
+-- | Clone a value multiple times
+--
+-- >>> clone 4 "cat"
+-- ["cat", "cat", "cat", "cat"]
+--
+-- >>> clone 3 'a'
+-- "aaa"
+--
+-- >>> clone 1 3.14
+-- [3.14]
 
-
--- | A recursive function
-
--- HEREHERE
-
--- >>> clone 0 'a'
+-- >>> clone 0 3.14
 -- []
 
--- >>> clone 1 'a'
--- ['a']
+clone :: Int -> t -> [t]
+clone 0 x = []
+clone n x = x : clone (n-1) x
 
--- >>> clone 2 'a'
--- ['a','a']
-
--- >>> clone 3 'a'
--- ['a','a','a']
-
-clone         :: Int -> thing -> [thing] 
-clone n x     = ite (n > 0) (x : clone (n-1) x) [] 
-
- -- if n > 0
- --               then x : clone (n-1) x
- --               else []
-
-bob1 = if 1 > 2              then "cat"    else "mouse"
-bob2 = if [1,2,3] == 1:2:3:4:[] then "hellow" else "world"
-
-ite True  e1 _ = e1
-ite False _ e2 = e2
+(***) :: Int -> t -> [t]
+(***) 0 x = []
+(***) n x = x : (***) (n-1) x
 
 
-{- 
+--------------------------------------------------------------------------------
+
+-- | Add up the elements of a list
+--
+-- >>> listAdd [1,2,3,4]
+-- 10
+
+listAdd :: [Int] -> Int
+listAdd []    = 0
+listAdd (h:t) = h + listAdd t
+
+
+
+--------------------------------------------------------------------------------
+
+-- | Generate the values between lo and hi
+--
+-- >>> range 0 5
+-- [0, 1, 2, 3, 4]
+
+range :: Int -> Int -> [Int]
+range lo hi   = ite (lo >= hi) [] (lo : rest)
+  where
+    lo'       = lo + 1
+    rest      = range lo' hi
+
+--------------------------------------------------------------------------------
+
+-- | An If-Then-Else function (!)
+
+-- >>> ifThenElse (1 < 2) "cat" "dog"
+-- "cat"
+--
+-- >>> ifThenElse (10 < 2) "cat" "dog"
+-- "dog"
+
+ite :: Bool -> t -> t -> t
+ite True  x _ = x
+ite False _ x = x
+
+{-
+
+function range(lo, hi){
+  return ite(lo >= hi, [], cons(lo, range(lo+1, hi)));
+}
+
+function ite(cond, x, y) {
+   return cond ? x : y;
+}
+
+function cons(x, xs) {
+  var ys = xs;
+  ys.push(x);
+  return ys;
+}
+
+
+-}
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+
+-- | Rewrite @range@ , @clone@ using @ite@
+
+range' = undefined
+
+clone' = undefined
+
+
+--------------------------------------------------------------------------------
+
+-- | Can we write such an @ite@ in JavaScript ?
+
+{-
 
 function ite(b, e1, e2){
   return b ? e1 : e2;
@@ -130,156 +216,61 @@ function clone(n, x){
 }
 
 -}
-{- 
 
 
 
 
 
+--------------------------------------------------------------------------------
+-- | Appending two lists
 
+-- >>> append [1,2,3] [4,5,6]
+-- [1,2,3,4,5,6]
 
-               
-clone n x   = if n == 0 
-                then [] 
-                else x : (clone (n-1) x)
 
---}
+append :: [a] -> [a] -> [a]
+append = undefined
 
--- | Cleaner, with "guards"
 
-clone' n x 
-  | n > 0     = x : clone' (n-1) x
-  | otherwise = [] 
 
--- | Cleaner, with "pattern matching"
+type Pos    = Double
+type Radius = Double
+data CircleT = Circle Pos Pos Radius
+               deriving (Eq, Show)
+type Size    = Double
+data SquareT = Square Pos Pos Size
+               deriving (Eq, Show)
 
-clone'' x 0 = []
-clone'' x n = x : clone'' x (n-1)
+data ShapeT = C CircleT
+            | S SquareT deriving (Eq, Show)
 
 
+area :: ShapeT -> Double
+area (C c) = areaCircle c
+area (S s) = areaSquare s
 
--- append :: [a] -> [a] -> [a]
--- append [1,2,3] [4,5,6] =========> [1,2,3,4,5,6]
+areaSquare :: SquareT -> Double
+areaSquare (Square _ _ s) = s * s
 
+areaCircle :: CircleT -> Double
+areaCircle (Circle _ _ r) = pi * r * r
 
 
+--------------------------------------------------------------------------------
+-- | Creating Types ------------------------------------------------------------
+--------------------------------------------------------------------------------
 
--- | An If-Then-Else function
-
-ifThenElse True thenExpr elseExpr  = thenExpr
-ifThenElse False thenExpr elseExpr = elseExpr
-
-
-
-clone''' x n = ifThenElse (n == 0) [] (x : clone''' x (n-1)) 
-
-
--- if True then 1 else error "DIE DEI DIE"
---     ===> 1
---
--- In JavaScript:
---
--- function ifThenElse(cond, thenB, elseB) { 
---   return cond ? thenB : elseB ;
--- }
--- var z = ifThenElse(true, 1, alert("DIE DIE DIE"));
-
-
-range lo hi 
-  | lo <= hi  = lo : rest
-  | otherwise = []
-  where
-    rest      = range (lo+1) hi
-
-
-
-
--- | Generate the elements in a `range lo hi`
-
--- >>> range 1 5
--- [1,2,3,4,5]
-
--- >>> range 5 1
--- []
-
-
--- range :: ???
-
-
-
-
-
-
-
-
-
-
-
-
-range lo hi 
-  | lo > hi   = []
-  | otherwise = lo : range (lo + 1) hi
-
-
-
-
-
--- | `sum` the elements of a list
-
--- >>> sum []
--- 0
-
--- >>> sum [1]
--- 1
-
--- >>> sum [1,2,3]
--- 6
-
--- sum :: ???
-
-
-
-
-
-
-
-
-
-
-sum []     = 0
-sum (x:xs) = x + sum xs
-
-
-
-
-
-
--------------------------------------------------------------
--- | Creating Types -----------------------------------------
--------------------------------------------------------------
-
-data Shape  = C XPos YPos Radius 
+data Shape  = C XPos YPos Radius
             | S XPos YPos Side
 
 type XPos = Double
 type YPos = Double
 type Side = Double
 type Radius = Double
- 
+
 area :: Shape -> Double
 area (S _ _ side) = side * side
 area (C _ _ radius) = pi * radius * radius
-
-
--- ADDS TWO NUMBERS!!!
-docrazymath x y  = x `undefined` y
-
--- "READS THE USERS INPUT"
-getUserInput x y = undefined
-
-
-
-
 
 
 
@@ -289,7 +280,7 @@ getUserInput x y = undefined
 
 -- data Circle = C (Double, Double, Double)
 -- C :: (Double, Double, Double) -> Circle
--- radius (C (_,_,r)) = r 
+-- radius (C (_,_,r)) = r
 -- C (0,1,55)
 --
 --
@@ -305,7 +296,7 @@ getUserInput x y = undefined
 
 
 
--- data [a] = [] 
+-- data [a] = []
 --          | (:) a [a]
 
 
@@ -322,7 +313,7 @@ getUserInput x y = undefined
 
 
 
-{- 
+{-
 
 area (Circle _ _ r)    = pi * r * r
 area (Square _ _ d)    = d * d
@@ -341,8 +332,9 @@ p0 = Poly   [(0,0), (4,4), (92, 92)]
 
 -}
 
+--------------------------------------------------------------------------------
 -- | IO
-
+--------------------------------------------------------------------------------
 
 main = putStrLn "Hello World!"
 
@@ -355,7 +347,7 @@ main = putStrLn "Hello World!"
 
 
 -- | Lets break it down. These just *actions*, not executed.
-          
+
 act1 = putStrLn "This is a string on a line"
 act2 = putStrLn "This is another string on a line"
 act3 = putStrLn "This is the last string i promise you"
@@ -370,9 +362,8 @@ bigAct = do act1
             act2
             act3
 
-      
-act :: IO ()
-act = do putStrLn "Hey? " 
-         name <- getLine 
-         putStrLn ("Hello " ++ name)
 
+act :: IO ()
+act = do putStrLn "Hey? "
+         name <- getLine
+         putStrLn ("Hello " ++ name)

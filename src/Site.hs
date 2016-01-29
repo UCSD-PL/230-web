@@ -8,25 +8,20 @@ import           Hakyll
 main :: IO ()
 main = hakyll $ do
     match "static/*"     copyDir
-    --match "static/pa1/*" copyDir
-    --match "static/pa2/*" copyDir
-    --match "static/pa3/*" copyDir
-    --match "static/pa4/*" copyDir
-    --match "static/pa5/*" copyDir
-    --match "static/pa6/*" copyDir
-    --match "static/pa7/*" copyDir
+    match "static/practice/*" copyDir
+    -- match "static/hw4/*"      copyDir
+    -- match "static/hw5/*"      copyDir
+    -- match "static/hw6/*"      copyDir
+    -- match "lectures/*"        copyDir
 
     match "css/*" $ do
         route   idRoute
         compile compressCssCompiler
 
-    match "templates/*"   $ compile templateCompiler
     match "lectures/*"    $ myMakeHTML
-    -- match "slides/*"      $ myMakeHTML
+    match "templates/*"   $ compile templateCompiler
     match "homeworks/*"   $ myMakeHTML
-    match "final/*"       $ myMakeHTML
     match (fromList tops) $ myMakeHTML
-
 
 tops = [ "index.markdown"
        , "grades.markdown"

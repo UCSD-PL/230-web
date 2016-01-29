@@ -3,12 +3,14 @@ title: Lectures
 ---
 
 **Date**     **Topic**                                          **Notes**
---------     ----------------------------------------------     --------------
-   *1/6*     Introduction                                       [pdf][lec1]   [hs][hs1] [lhs][lhs1]
-   *1/8*     Higher-Order Functions                             [html][lec2]  [hs][lhs2]
-  *1/13*     Polymorphism                                       [html][lec3]  [hs][lhs3]
-  *1/15*     Typeclasses                                        [html][lec4]  [hs][lhs4] 
-  *1/20*     Monoids & Functors                                 [html][lec7]  [hs][lhs7]
+--------     ----------------------------------------------     --------------------------
+   *1/5*     Introduction & The Lambda Calculus                 [pdf][pdf-intro] [pdf][pdf-lambda] [notes][notes1]
+   *1/7*     From LC to Haskell                                 [pdf][pdf-haskell]  [hs][hs1]
+  *1/14*     Higher-Order Functions                             [html][lec2]  [hs][lhs2]
+  *1/21*     Polymorphism & Typeclasses                         [html-A][lec3] [html-B][lec4]  [hs-B][lhs3] [hs-B][lhs4] 
+  *1/28*     Functors                                           [html][lec7]  [hs][lhs7]
+
+<!--
   *1/22*     Monads                                             [html][lec7]  [hs][lhs7]
   *2/10*     Parser Combinators                                 [html][lec9]  [hs][lhs9] 
   *2/17*     Testing                                            [html][lec10] [hs][lhs10]
@@ -19,10 +21,16 @@ title: Lectures
   *3/10*     (contd.)
   *3/12*     (contd.)
 
+-->
+
 ----------------------------------------------------------------------------------
 
-[lec1]: static/lec-intro-2x2.pdf
-[hs1]:  static/lec-intro.hs
+[pdf-intro]: static/lec-intro-2x2.pdf 
+[pdf-lambda]: static/lec-lambda-2x2.pdf
+[pdf-haskell]: static/lec-haskell-2x2.pdf
+
+[notes1]: https://piazza.com/class/ij0wjmlgp4r1gp?cid=7
+[hs1]:  static/lec-intro.hs 
 [lhs1]: static/lec-intro.lhs
 
 [lec2]: lectures/lec-higher-order-1.html
@@ -49,7 +57,6 @@ title: Lectures
 [lec13]: lectures/lec-stm.html
 [lhs13]: lectures/lec-stm.lhs
 
-[pdf14]: static/lec-lambda-2x2.pdf
 
 [lec15]: lectures/lec-inference.html
 [lhs15]: lectures/lec-inference.lhs
